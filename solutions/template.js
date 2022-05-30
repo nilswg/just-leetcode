@@ -9,9 +9,14 @@
 // 解題思路
 
 // 複雜度
-// Time Complexity : O(N)
-// Space Complexity: O(1)
+// Time Complexity : O(??)
+// Space Complexity: O(??)
 
-// (代碼)
+/**
+ * Write some code here!
+ */
 
 // 測試
+(function(){
+  console.log('Testing [XXX]...');
+})()
