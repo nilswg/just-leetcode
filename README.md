@@ -1,4 +1,4 @@
-# my-leetcode
+# just-leetcode
 
 ## 目錄
 
