@@ -17,6 +17,12 @@
  */
 
 // 測試
-(function(){
+(function () {
   console.log('Testing [XXX]...');
-})()
+
+  /**
+   * Write Some Testing here
+   */
+
+  console.log('All Testing Passed ✅');
+})();

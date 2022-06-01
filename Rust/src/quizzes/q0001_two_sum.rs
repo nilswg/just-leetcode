@@ -24,14 +24,7 @@ impl Solution {
 }
 pub fn main() {
     println!("Start q0001_two_sum testing...");
-    assert_eq!(Solution::two_sum(vec![2, 7, 11, 15], 9), vec![0, 1]);
-    assert_eq!(Solution::two_sum(vec![3, 2, 4], 6), vec![1, 2]);
-    println!("All Pass ✔");
-
-    let option_name: Option<String> = Some("Alice".to_owned());
-    match &option_name {
-        &Some(ref name) => println!("Name is {}", name),
-        &None => println!("No name provided"),
-    }
-    println!("{:?}", option_name);
+    println!("case1:> {}", Solution::two_sum(vec![2, 7, 11, 15], 9) == vec![0, 1]);
+    println!("case2:> {}", Solution::two_sum(vec![3, 2, 4], 6) == vec![1, 2]);
+    println!("All Testing Passed ✅");
 }

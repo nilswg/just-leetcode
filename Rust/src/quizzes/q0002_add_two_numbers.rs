@@ -104,14 +104,14 @@ pub fn main() {
         "case1:> {}",
         test_case(vec![2, 4, 3], vec![5, 6, 4], vec![7, 0, 8])
     );
-    println!("case1:> {}", test_case(vec![0], vec![0], vec![0]));
+    println!("case2:> {}", test_case(vec![0], vec![0], vec![0]));
     println!(
-        "case1:> {}",
+        "case3:> {}",
         test_case(
             vec![9, 9, 9, 9, 9, 9, 9],
             vec![9, 9, 9, 9],
             vec![8, 9, 9, 9, 0, 0, 0, 1]
         )
     );
-    println!("All Pass ✔");
+    println!("All Testing Passed ✅");
 }
