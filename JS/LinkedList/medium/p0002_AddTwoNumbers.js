@@ -1,5 +1,7 @@
 // @ts-check
 
+import { isLinkedListEqual, LinkedList, ListNode } from '../index';
+
 // 題目鏈結
 // https://leetcode.com/problems/add-two-numbers/
 
@@ -70,18 +72,19 @@
 // 複雜度
 // Time Complexity : O(N)
 // Space Complexity: O(1)
-
-function ListNode(val, next) {
-  this.val = val === undefined ? 0 : val;
-  this.next = next === undefined ? null : next;
-}
-
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
 /**
  * @param {ListNode} l1
  * @param {ListNode} l2
  * @return {ListNode}
  */
- var addTwoNumbers = function (l1, l2) {
+var addTwoNumbers = function (l1, l2) {
   let cur = new ListNode(null);
   let res = cur;
   let carry = 0;
@@ -103,55 +106,22 @@ function ListNode(val, next) {
 };
 
 // 測試
-(function(){
-
-  console.log('Testing AddTwoNumbers...');
-
-  /**
-   *
-   * @param {Array<number>} arr
-   * @returns {ListNode}
-   */
-  function List(arr) {
-    let cur = new ListNode(null);
-    let res = cur;
-    for (const a of arr) {
-      cur = cur.next = new ListNode(a);
-    }
-    return res.next;
-  }
-
-  /**
-   *
-   * @param {ListNode} l1
-   * @param {ListNode} l2
-   * @returns {boolean}
-   */
-  function isEqual(l1, l2) {
-    while (l1 && l2) {
-      if (l1.val !== l2.val) {
-        return false;
-      }
-      l1 = l1.next;
-      l2 = l2.next;
-    }
-    if (l1 || l2) return false;
-    return true;
-  }
+(function () {
+  console.log('Testing p0002_AddTwoNumbers...');
 
   console.log(
-    isEqual(
-      addTwoNumbers(List([2, 4, 3]), List([5, 6, 4])),
-      List([7, 0, 8])
+    isLinkedListEqual(
+      addTwoNumbers(LinkedList([2, 4, 3]), LinkedList([5, 6, 4])),
+      LinkedList([7, 0, 8])
     ) === true
   );
 
   console.log(
-    isEqual(
-      addTwoNumbers(List([9, 9, 9]), List([9, 9])),
-      List([8, 9, 0, 1])
+    isLinkedListEqual(
+      addTwoNumbers(LinkedList([9, 9, 9]), LinkedList([9, 9])),
+      LinkedList([8, 9, 0, 1])
     ) === true
   );
 
   console.log('All Testing Passed ✅');
-})()
+})();
