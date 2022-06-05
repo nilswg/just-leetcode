@@ -65,8 +65,6 @@ impl Solution {
     }
 }
 
-// 太難寫了，連測試都寫不出來。
-
 fn get(v: Vec<i32>) -> Option<Box<ListNode>> {
     let mut head: Option<Box<ListNode>> = None;
     let mut curr = &mut head;
