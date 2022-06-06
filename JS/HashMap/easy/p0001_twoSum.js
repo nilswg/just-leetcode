@@ -12,6 +12,7 @@
 // 解題重點
 // 1. 了解 HashMap 基本概念與使用方式
 // 2. HashMap儲存以值來找index，即 { key:value, value:index }
+// 3. 需關心答案的順序問題， [1,0] ❌；[0,1] ✅
 
 // 解題思路
 // (略)
@@ -40,20 +41,7 @@ var twoSum = function (nums, target) {
 // 測試
 (function () {
   let isEqual = (nums1, nums2) => {
-    // 驗證長度是否一致
-    if (nums1.length !== nums2.length) return false;
-
-    // 確保兩者順序一致。
-    nums1.sort();
-    nums2.sort();
-
-    // 比較內容是否完全一致。
-    for (let i = 0; i < nums1.length; i++) {
-      if (nums1[i] !== nums2[i]) {
-        return false;
-      }
-    }
-    return true;
+    return nums1[0] === nums2[0] && nums1[1] === nums2[1];
   };
 
   console.log('Testing TwoSum...');

@@ -35,5 +35,6 @@ pub fn main() {
         "case2:> {}",
         Solution::two_sum(vec![3, 2, 4], 6) == vec![1, 2]
     );
+    println!("case3:> {}", Solution::two_sum(vec![3, 3], 6) == vec![0, 1]);
     println!("All Testing Passed ✅");
 }
