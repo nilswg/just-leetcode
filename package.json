@@ -1,0 +1,12 @@
+{
+  "name": "just-leetcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "type": "module",
+  "scripts": {
+    "build-index": "node ./utils/indexBuilder.js"
+  },
+  "author": "nilswg",
+  "license": "ISC"
+}
