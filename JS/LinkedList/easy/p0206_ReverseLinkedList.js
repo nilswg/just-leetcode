@@ -15,43 +15,52 @@ import { isLinkedListEqual, LinkedList, ListNode } from '../index.js';
 
 // 解題思路
 // T = 0
-// null    1 -> 2 -> 3
-//    ^res ^cur/pre
+// null    1  ->  2  ->  3
+//    ^res ^head
 //
 // T = 1
-// null <- 1    2 -> 3
-//    ^res ^cur ^pre
+// null    1 -> 2 -> 3
+//    ^res ^head/pre
+//
+// null    1 -> 2 -> 3
+//    ^res ^pre ^head
 //
 // null <- 1    2 -> 3
-//         ^cur ^pre
+//    ^res ^pre ^head
+//
+// null <- 1    2 -> 3
+//         ^pre ^head
 //         ^res
 //
-// null <- 1    2 -> 3
-//         ^res ^cur/pre
-//
 // T = 2
-// null <- 1 <- 2    3
-//         ^res ^cur ^pre
+// null <- 1    2 -> 3
+//         ^res ^head/pre
+//
+// null <- 1    2 -> 3
+//         ^res ^pre ^head
 //
 // null <- 1 <- 2    3
-//              ^cur ^pre
+//         ^res ^pre ^head
+//
+// null <- 1 <- 2    3
+//              ^pre ^head
 //              ^res
 //
-// null <- 1    2 -> 3
-//              ^res ^cur/pre
-//
 // T = 3
-// null <- 1 <- 2 <- 3    null
-//              ^res ^cur ^pre
+// null <- 1 <- 2    3
+//              ^res ^head/pre
+//
+// null <- 1 <- 2    3 -> null
+//              ^res ^pre ^head
 //
 // null <- 1 <- 2 <- 3    null
-//                   ^cur ^pre
+//              ^res ^pre ^head
+
+// null <- 1 <- 2 <- 3    null
+//                   ^pre ^head
 //                   ^res
 //
-// null <- 1 <- 2 <- 3    null
-//                   ^res ^cur/pre
-//
-// 最後，cur、pre 都指向null,  res 成為反轉後的頭節點。
+// 最後，head 指向null,  pre, res 皆可作為反轉後串列的新頭節點； 我們返回 res 作為答案。
 
 // 複雜度
 // Time Complexity : O(N)
@@ -71,13 +80,11 @@ import { isLinkedListEqual, LinkedList, ListNode } from '../index.js';
  */
 var reverseList = function (head) {
   let res = null;
-  let cur = head;
-  let pre = head;
-  while (cur) {
-    pre = cur.next;
-    cur.next = res;
-    res = cur;
-    cur = pre;
+  while (head) {
+    let pre = head;
+    head = pre.next;
+    pre.next = res;
+    res = pre;
   }
   return res;
 };

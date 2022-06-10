@@ -1,3 +1,47 @@
+// 解題思路
+//
+// let mut head = Some(Box::new(Node {
+//     val: 1,
+//     next: Some(Box::new(Node {
+//         val: 2,
+//         next: Some(Box::new(Node {
+//             val: 3,
+//             next: Some(Box::new(Node {
+//                 val: 4,
+//                 next: Some(Box::new(Node { val: 5, next: None })),
+//             })),
+//         })),
+//     })),
+// }));
+//
+// T = 0
+//
+// res        head
+// [{None}]   [ {1, next->[..]} ]
+//
+//
+// T = 1
+//
+// res                       head                    node
+// [{None}]                  [               ]       {1, next->[2..]}
+//
+//                                                   // 透過 let Some(node) = head，取出node
+//
+// res                       head                    node
+// [{None}]                  [{2, next->[3..]}]      {1, next->[  ]}
+//
+//                                                   //head = node.next;
+//
+// res                       head                    node
+// [      ]                  [{2, next->[3..]}]      {1, next->[{None}]}
+//
+//                                                   // node.next = res;
+//
+// res                       head                    node
+// [{1, next->[{None}]}]     [{2, next->[3..]}]      None
+//
+
+
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
@@ -68,3 +112,5 @@ pub fn main() {
 
     println!("All Testing Passed ✅");
 }
+
+
