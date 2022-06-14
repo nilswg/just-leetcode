@@ -27,6 +27,7 @@ const GITHUB_URL = `https://github.com/nilswg/just-leetcode/blob/main/`;
  */
 const PROJECT_DIRNAME = 'just-leetcode';
 
+
 /**
  * 搜尋當前路徑下的所有內容，返回所有檔案路徑。
  * @param {string} dir
@@ -167,9 +168,9 @@ function searchSolutionsUnderFolder(dir, extension) {
      */
     .filter((url) => url !== null)
     /**
-     * 使用key來重新排序
+     * 使用seq來重新排序
      */
-    .sort((a, b) => Number(a.seq) - Number(b.seq));
+    .sort((a, b) => Number.parseInt(a.seq) - Number.parseInt(b.seq));
 
   return results;
 }
@@ -231,6 +232,8 @@ function save(url, data) {
     return prev;
   }, {});
 
+  // console.log(mp);
+
   console.log(
     `Now, you have`,
     solutions.length,
@@ -279,7 +282,7 @@ function save(url, data) {
 | Title                                  | JavaScript    | Rust          |
 |:---------------------------------------|:-------------:|:-------------:|\n`;
 
-  for (let i = 0; i < maxSeqNumber; i++) {
+  for (let i = 0; i <= maxSeqNumber; i++) {
     const seq = i.toString();
     if (mp[seq]) {
       let solItems = [''];

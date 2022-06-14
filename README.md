@@ -9,6 +9,7 @@
 |p0003_lengthOfLongestSubstring.js       |[✔][p0003_js]  |[✔][p0003_rs]  |
 |p0015_threeSum.js                       |[✔][p0015_js]  |[✔][p0015_rs]  |
 |p0018_fourSum.js                        |[✔][p0018_js]  |               |
+|p0025_reverse_nodes_in_k_group.js       |[✔][p0025_js]  |               |
 |p0034_FindFirstAndLastPositionOfEleme...|[✔][p0034_js]  |[✔][p0034_rs]  |
 |p0146_LRUCache.js                       |[✔][p0146_js]  |               |
 |p0206_ReverseLinkedList.js              |[✔][p0206_js]  |[✔][p0206_rs]  |
@@ -16,6 +17,7 @@
 |p0239_slidingWindowMaximum.js           |[✔][p0239_js]  |[✔][p0239_rs]  |
 |p0395_longestSubStringWithAtLeastRepe...|[✔][p0395_js]  |               |
 |p0454_fourSumii.js                      |[✔][p0454_js]  |               |
+|p0480_SlidingWindowMedium.js            |[✔][p0480_js]  |               |
 
 <!-- 0001 -->
 [p0001_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashMap/easy/p0001_twoSum.js
@@ -35,6 +37,9 @@
 
 <!-- 0018 -->
 [p0018_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashMap/medium/p0018_fourSum.js
+
+<!-- 0025 -->
+[p0025_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/LinkedList/hard/p0025_reverse_nodes_in_k_group.js
 
 <!-- 0034 -->
 [p0034_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinarySearch/medium/p0034_FindFirstAndLastPositionOfElementInSortedArray.js
@@ -59,4 +64,7 @@
 
 <!-- 0454 -->
 [p0454_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashMap/medium/p0454_fourSumii.js
+
+<!-- 0480 -->
+[p0480_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SlidingWindow/hard/p0480_SlidingWindowMedium.js
 
