@@ -1,6 +1,6 @@
 // @ts-check
 
-import { isLinkedListEqual, LinkedList, ListNode } from '../index';
+import { isLinkedListEqual, LinkedList, ListNode } from '../index.js';
 
 // 題目鏈結
 // https://leetcode.com/problems/add-two-numbers/

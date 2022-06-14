@@ -41,6 +41,18 @@
 // [{1, next->[{None}]}]     [{2, next->[3..]}]      None
 //
 
+//   null   (1) -> (2) -> (3)
+//   res   head
+//           st
+//
+//   null <- (1)   (2) -> (3)
+//           res   head
+
+//   null <- (1) <-(2) <- (3)    (4)
+//           st           res   head
+
+//   (3) -> (2) -> (1) -> null   (4)
+//   res           st           head
 
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug)]

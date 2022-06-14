@@ -11,56 +11,56 @@ import { isLinkedListEqual, LinkedList, ListNode } from '../index.js';
 // Output: [5,4,3,2,1]
 
 // 解題重點
-// 需要額外的pre保存curr.next，待curr反轉後，再透過pre去移動到下一節點
+// 需要額外的tmp保存curr.next，待curr反轉後，再透過tmp去移動到下一節點
 
 // 解題思路
 // T = 0
-// null    1  ->  2  ->  3
-//    ^res ^head
+// null    1 -> 2 -> 3
+//    ^pre ^head
 //
 // T = 1
 // null    1 -> 2 -> 3
-//    ^res ^head/pre
+//    ^pre ^head/tmp
 //
-// null    1 -> 2 -> 3
-//    ^res ^pre ^head
+// null    1 -> 2 -> 3  (head = head.next)
+//    ^pre ^tmp ^head
 //
-// null <- 1    2 -> 3
-//    ^res ^pre ^head
+// null <- 1    2 -> 3 (tmp.next = pre)
+//    ^pre ^tmp ^head
 //
-// null <- 1    2 -> 3
-//         ^pre ^head
-//         ^res
+// null <- 1    2 -> 3 (pre = tmp)
+//         ^tmp ^head
+//         ^pre
 //
 // T = 2
 // null <- 1    2 -> 3
-//         ^res ^head/pre
+//         ^pre ^head/tmp
 //
 // null <- 1    2 -> 3
-//         ^res ^pre ^head
+//         ^pre ^tmp ^head
 //
 // null <- 1 <- 2    3
-//         ^res ^pre ^head
+//         ^pre ^tmp ^head
 //
 // null <- 1 <- 2    3
-//              ^pre ^head
-//              ^res
+//              ^tmp ^head
+//              ^pre
 //
 // T = 3
-// null <- 1 <- 2    3
-//              ^res ^head/pre
+// null <- 1 <- 2    3 -> null
+//              ^pre ^head/tmp
 //
 // null <- 1 <- 2    3 -> null
-//              ^res ^pre ^head
+//              ^pre ^tmp ^head
 //
 // null <- 1 <- 2 <- 3    null
-//              ^res ^pre ^head
+//              ^pre ^tmp ^head
 
 // null <- 1 <- 2 <- 3    null
-//                   ^pre ^head
-//                   ^res
+//                   ^tmp ^head
+//                   ^pre
 //
-// 最後，head 指向null,  pre, res 皆可作為反轉後串列的新頭節點； 我們返回 res 作為答案。
+// 最後，head 指向null,  tmp, pre 皆可作為反轉後串列的新頭節點； 我們返回 pre 作為答案。
 
 // 複雜度
 // Time Complexity : O(N)
@@ -79,14 +79,14 @@ import { isLinkedListEqual, LinkedList, ListNode } from '../index.js';
  * @return {ListNode}
  */
 var reverseList = function (head) {
-  let res = null;
+  let pre = null;  //反轉後 pre 會成為新的head後返回
   while (head) {
-    let pre = head;
-    head = pre.next;
-    pre.next = res;
-    res = pre;
+    let tmp = head;  // tmp 就像一個錨節點
+    head = tmp.next; // tmp 幫助 head 移動的下一節點
+    tmp.next = pre;  // tmp 反轉指針指向 pre
+    pre = tmp;       // tmp 幫助 pre 移動到下一節點，完成一次循環。
   }
-  return res;
+  return pre;
 };
 
 // 測試
