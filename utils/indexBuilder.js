@@ -27,7 +27,6 @@ const GITHUB_URL = `https://github.com/nilswg/just-leetcode/blob/main/`;
  */
 const PROJECT_DIRNAME = 'just-leetcode';
 
-
 /**
  * 搜尋當前路徑下的所有內容，返回所有檔案路徑。
  * @param {string} dir
@@ -156,9 +155,15 @@ function searchSolutionsUnderFolder(dir, extension) {
       const seq = getSeqNumber(fullFileName);
       const urlstr = genHrefString(texts.join('/'));
 
+      /**
+       * e.g : 去掉extension
+       */
+      const re = new RegExp(`\.${extension}`, 'g');
+      const solName = fullFileName.replace(re, '');
+
       return {
         seq: seq,
-        name: fullFileName,
+        name: solName,
         url: urlstr,
         extension: extension,
       };
@@ -198,7 +203,7 @@ function setToFit(str, size) {
 function save(url, data) {
   writeFile(url, data, function (err) {
     if (err) return console.log(err);
-    console.log('All work is finished successfully !');
+    console.log('\nAll work is finished successfully !');
   });
 }
 
@@ -222,7 +227,7 @@ function save(url, data) {
   /**
    * 根據不同題目，將對應的答案以語言分類
    */
-  const mp = solutions.reduce((prev, curr, i) => {
+  const solMap = solutions.reduce((prev, curr, i) => {
     const { seq, extension } = curr;
     const key = Number.parseInt(seq);
     if (!prev[key]) {
@@ -232,13 +237,44 @@ function save(url, data) {
     return prev;
   }, {});
 
-  // console.log(mp);
+  /**
+   * 形成以下結構，以題目 > 語言 > 答案
+   *
+   * e.g
+   *
+   *  '1': {
+   *     js: {
+   *       seq: '0001',
+   *       name: 'p0001_twoSum.js',
+   *       url: 'https://github.com/nilswg/just-leetcode/blob/main//JS/HashMap/easy/p0001_twoSum.js',
+   *       extension: 'js'
+   *     },
+   *     rs: {
+   *       seq: '0001',
+   *       name: 'p0001_two_sum.rs',
+   *       url: 'https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0001_two_sum.rs',
+   *       extension: 'rs'
+   *     }
+   *   },
+   *
+   */
+
+  const langMp = solutions.reduce((prev, curr, i) => {
+    if (!prev[curr.extension]) {
+      prev[curr.extension] = 1;
+    } else {
+      prev[curr.extension] += 1;
+    }
+    return prev;
+  }, {});
 
   console.log(
-    `Now, you have`,
+    `\nNow, you have: `,
+    langMp,
+    `\nTotally,`,
     solutions.length,
     `solutions for`,
-    Object.keys(mp).length,
+    Object.keys(solMap).length,
     `problems.`
   );
 
@@ -284,12 +320,12 @@ function save(url, data) {
 
   for (let i = 0; i <= maxSeqNumber; i++) {
     const seq = i.toString();
-    if (mp[seq]) {
+    if (solMap[seq]) {
       let solItems = [''];
       let solLinks = [''];
 
       META.list.forEach(({ extension }) => {
-        const sol = mp[seq][extension];
+        const sol = solMap[seq][extension];
         appendSolutionItems(solItems, sol);
         appendSolutionLinks(solLinks, sol);
       });
