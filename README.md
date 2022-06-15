@@ -9,6 +9,7 @@
 |p0003_lengthOfLongestSubstring          |[✔][p0003_js]  |[✔][p0003_rs]  |
 |p0015_threeSum                          |[✔][p0015_js]  |[✔][p0015_rs]  |
 |p0018_fourSum                           |[✔][p0018_js]  |               |
+|p0021_MergeTwoSortedLists               |[✔][p0021_js]  |               |
 |p0025_reverse_nodes_in_k_group          |[✔][p0025_js]  |               |
 |p0034_FindFirstAndLastPositionOfEleme...|[✔][p0034_js]  |[✔][p0034_rs]  |
 |p0053_MaximumSubArray                   |[✔][p0053_js]  |[✔][p0053_rs]  |
@@ -38,6 +39,9 @@
 
 <!-- 0018 -->
 [p0018_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashMap/medium/p0018_fourSum.js
+
+<!-- 0021 -->
+[p0021_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/LinkedList/easy/p0021_MergeTwoSortedLists.js
 
 <!-- 0025 -->
 [p0025_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/LinkedList/hard/p0025_reverse_nodes_in_k_group.js
