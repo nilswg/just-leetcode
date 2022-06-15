@@ -11,7 +11,7 @@
 |p0018_fourSum                           |[✔][p0018_js]  |               |
 |p0025_reverse_nodes_in_k_group          |[✔][p0025_js]  |               |
 |p0034_FindFirstAndLastPositionOfEleme...|[✔][p0034_js]  |[✔][p0034_rs]  |
-|p0053_maximum_subarray                  |               |[✔][p0053_rs]  |
+|p0053_MaximumSubArray                   |[✔][p0053_js]  |[✔][p0053_rs]  |
 |p0146_LRUCache                          |[✔][p0146_js]  |               |
 |p0206_ReverseLinkedList                 |[✔][p0206_js]  |[✔][p0206_rs]  |
 |p0215_kth_largest_element_in_an_array   |               |[✔][p0215_rs]  |
@@ -47,6 +47,7 @@
 [p0034_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0034_find_first_and_last_position_of_element_in_sorted_array.rs
 
 <!-- 0053 -->
+[p0053_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SubArray/easy/p0053_MaximumSubArray.js
 [p0053_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0053_maximum_subarray.rs
 
 <!-- 0146 -->
