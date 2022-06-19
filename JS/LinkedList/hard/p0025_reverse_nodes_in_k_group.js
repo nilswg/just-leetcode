@@ -73,7 +73,7 @@
 // Time Complexity : O(??)
 // Space Complexity: O(??)
 
-import { LinkedList, ListNode, isLinkedListEqual } from '../index.js';
+import { LinkedList, ListNode, isLinkedListEqual } from '../linkedList.js';
 
 /**
  * @param {ListNode} head
