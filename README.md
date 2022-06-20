@@ -6,7 +6,7 @@
 |:---------------------------------------|:-------------:|:-------------:|
 |p0001_twoSum                            |[✔][p0001_js]  |[✔][p0001_rs]  |
 |p0002_AddTwoNumbers                     |[✔][p0002_js]  |[✔][p0002_rs]  |
-|p0003_lengthOfLongestSubstring          |[✔][p0003_js]  |[✔][p0003_rs]  |
+|p0003_ValidParentheses                  |[✔][p0003_js]  |[✔][p0003_rs]  |
 |p0015_threeSum                          |[✔][p0015_js]  |[✔][p0015_rs]  |
 |p0018_fourSum                           |[✔][p0018_js]  |               |
 |p0021_MergeTwoSortedLists               |[✔][p0021_js]  |               |
@@ -24,6 +24,7 @@
 |p0429_NaryTreeLevelOrderTraversal       |[✔][p0429_js]  |               |
 |p0454_fourSumii                         |[✔][p0454_js]  |               |
 |p0480_SlidingWindowMedium               |[✔][p0480_js]  |               |
+|p0844_BackspaceStringCompare            |[✔][p0844_js]  |               |
 
 <!-- 0001 -->
 [p0001_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashMap/easy/p0001_twoSum.js
@@ -34,7 +35,7 @@
 [p0002_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0002_add_two_numbers.rs
 
 <!-- 0003 -->
-[p0003_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SlidingWindow/medium/p0003_lengthOfLongestSubstring.js
+[p0003_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/Stack/easy/p0003_ValidParentheses.js
 [p0003_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0003_length_of_longest_substring.rs
 
 <!-- 0015 -->
@@ -92,4 +93,7 @@
 
 <!-- 0480 -->
 [p0480_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SlidingWindow/hard/p0480_SlidingWindowMedium.js
+
+<!-- 0844 -->
+[p0844_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/TwoPointers/easy/p0844_BackspaceStringCompare.js
 
