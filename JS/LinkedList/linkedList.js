@@ -14,7 +14,7 @@ export function ListNode(val, next) {
  * @param {Array<number>} arr
  * @returns {ListNode}
  */
-export function LinkedList(arr) {
+export function LinkedList(arr=[]) {
   let cur = new ListNode(null);
   let res = cur;
   for (const a of arr) {

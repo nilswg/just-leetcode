@@ -1,5 +1,5 @@
 // @ts-check
-import { isLinkedListEqual, LinkedList, ListNode } from '../index.js';
+import { isLinkedListEqual, LinkedList, ListNode } from '../linkedList.js';
 
 // 題目鏈結
 // https://leetcode.com/problems/merge-two-sorted-lists/
