@@ -13,6 +13,7 @@
 |p0021_MergeTwoSortedLists               |[✔][p0021_js]  |               |
 |p0025_reverse_nodes_in_k_group          |[✔][p0025_js]  |               |
 |p0034_FindFirstAndLastPositionOfEleme...|[✔][p0034_js]  |[✔][p0034_rs]  |
+|p0046_Permutations                      |[✔][p0046_js]  |               |
 |p0053_MaximumSubArray                   |[✔][p0053_js]  |[✔][p0053_rs]  |
 |p0092_ReverseLinkedListII               |[✔][p0092_js]  |               |
 |p0100_SameTree                          |[✔][p0100_js]  |               |
@@ -60,6 +61,9 @@
 <!-- 0034 -->
 [p0034_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinarySearch/medium/p0034_FindFirstAndLastPositionOfElementInSortedArray.js
 [p0034_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0034_find_first_and_last_position_of_element_in_sorted_array.rs
+
+<!-- 0046 -->
+[p0046_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BackTracking/medium/p0046_Permutations.js
 
 <!-- 0053 -->
 [p0053_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SubArray/easy/p0053_MaximumSubArray.js
