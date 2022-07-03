@@ -7,7 +7,8 @@ pub mod p0053_maximum_subarray;
 pub mod p0206_reverse_linked_list;
 pub mod p0215_kth_largest_element_in_an_array;
 pub mod p0239_sliding_window_maximum;
+pub mod p0037_sudoku_solver;
 
 pub fn test_solutions(){
-  p0053_maximum_subarray::main();
+  p0037_sudoku_solver::main();
 }
