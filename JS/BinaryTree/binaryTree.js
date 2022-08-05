@@ -77,10 +77,11 @@ export const isArrayEqual = (arr1, arr2) => {
  * @param {TreeNode} q
  * @return {boolean}
  */
- export const isSameTree = function (p, q) {
+export const isSameTree = function (p, q) {
   const helper = (p, q) => {
-    if (p === null && q === null) return true;
-    if ((p && !q) || (!p && q) || p.val !== q.val) return false;
+    if (!p && !q) return true;
+    if (!p || !q) return false;
+    if (p.val !== q.val) return false;
     return helper(p.left, q.left) && helper(p.right, q.right);
   };
   return helper(p, q);
