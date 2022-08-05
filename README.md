@@ -20,19 +20,24 @@
 |p0100_SameTree                          |[✔][p0100_js]  |               |
 |p0102_BinaryTreeLevelOrderTraversal     |[✔][p0102_js]  |               |
 |p0108_ConvertSortedArraytoBinarySearc...|[✔][p0108_js]  |               |
+|p0121_BestTimeToBuyAndSellStock         |[✔][p0121_js]  |               |
+|p0125_ValidPalindrome                   |[✔][p0125_js]  |               |
 |p0146_LRUCache                          |[✔][p0146_js]  |               |
 |p0206_ReverseLinkedList                 |[✔][p0206_js]  |[✔][p0206_rs]  |
 |p0215_KthLargestElementInArray          |[✔][p0215_js]  |[✔][p0215_rs]  |
+|p0226_InvertBinaryTree                  |[✔][p0226_js]  |               |
 |p0239_slidingWindowMaximum              |[✔][p0239_js]  |[✔][p0239_rs]  |
+|p0242_ValidAnagram                      |[✔][p0242_js]  |               |
 |p0395_longestSubStringWithAtLeastRepe...|[✔][p0395_js]  |               |
 |p0429_NaryTreeLevelOrderTraversal       |[✔][p0429_js]  |               |
 |p0430_FlattenMultilevelDoublyLinkedList |[✔][p0430_js]  |               |
 |p0454_fourSumii                         |[✔][p0454_js]  |               |
 |p0480_SlidingWindowMedium               |[✔][p0480_js]  |               |
+|p0704_BinarySearch                      |[✔][p0704_js]  |               |
 |p0844_BackspaceStringCompare            |[✔][p0844_js]  |               |
 
 <!-- 0001 -->
-[p0001_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashMap/easy/p0001_twoSum.js
+[p0001_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/easy/p0001_twoSum.js
 [p0001_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0001_two_sum.rs
 
 <!-- 0002 -->
@@ -44,11 +49,11 @@
 [p0003_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0003_length_of_longest_substring.rs
 
 <!-- 0015 -->
-[p0015_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashMap/medium/p0015_threeSum.js
+[p0015_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/medium/p0015_threeSum.js
 [p0015_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0015_three_sum.rs
 
 <!-- 0018 -->
-[p0018_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashMap/medium/p0018_fourSum.js
+[p0018_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/medium/p0018_fourSum.js
 
 <!-- 0020 -->
 [p0020_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/Stack/easy/p0020_ValidParentheses.js
@@ -86,6 +91,12 @@
 <!-- 0108 -->
 [p0108_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinaryTree/easy/p0108_ConvertSortedArraytoBinarySearchTree.js
 
+<!-- 0121 -->
+[p0121_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/DP/easy/p0121_BestTimeToBuyAndSellStock.js
+
+<!-- 0125 -->
+[p0125_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/String/easy/p0125_ValidPalindrome.js
+
 <!-- 0146 -->
 [p0146_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/LinkedList/medium/p0146_LRUCache.js
 
@@ -97,9 +108,15 @@
 [p0215_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/Sort/medium/p0215_KthLargestElementInArray.js
 [p0215_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0215_kth_largest_element_in_an_array.rs
 
+<!-- 0226 -->
+[p0226_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinaryTree/easy/p0226_InvertBinaryTree.js
+
 <!-- 0239 -->
 [p0239_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SlidingWindow/hard/p0239_slidingWindowMaximum.js
 [p0239_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0239_sliding_window_maximum.rs
+
+<!-- 0242 -->
+[p0242_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/easy/p0242_ValidAnagram.js
 
 <!-- 0395 -->
 [p0395_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SlidingWindow/medium/p0395_longestSubStringWithAtLeastRepeatingCharacters.js
@@ -111,10 +128,13 @@
 [p0430_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/LinkedList/medium/p0430_FlattenMultilevelDoublyLinkedList.js
 
 <!-- 0454 -->
-[p0454_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashMap/medium/p0454_fourSumii.js
+[p0454_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/medium/p0454_fourSumii.js
 
 <!-- 0480 -->
 [p0480_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SlidingWindow/hard/p0480_SlidingWindowMedium.js
+
+<!-- 0704 -->
+[p0704_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinarySearch/easy/p0704_BinarySearch.js
 
 <!-- 0844 -->
 [p0844_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/TwoPointers/easy/p0844_BackspaceStringCompare.js

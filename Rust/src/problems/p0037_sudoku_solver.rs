@@ -3,20 +3,18 @@ use std::time::{Duration, Instant};
 pub struct Solution {}
 impl Solution {
     pub fn solve_sudoku(board: &mut Vec<Vec<char>>) {
-        let n: usize = board.len();
-        let a: usize = (n as f32).sqrt().floor() as usize;
-        let mut rows = vec![vec![0; n]; n];
-        let mut cols = vec![vec![0; n]; n];
-        let mut boxs = vec![vec![0; n]; n];
+        let mut rows = vec![vec![0; 9]; 9];
+        let mut cols = vec![vec![0; 9]; 9];
+        let mut boxs = vec![vec![0; 9]; 9];
         let mut empties = vec![];
 
-        for ri in 0..n {
-            for ci in 0..n {
+        for ri in 0..9 {
+            for ci in 0..9 {
                 //get index of each box
-                let bi = ri / a * a + ci / a;
+                let bi = ri / 3 * 3 + ci / 3;
 
                 if board[ri][ci] != '.' {
-                    if let Some(val) = board[ri][ci].to_digit((n + 1) as u32) {
+                    if let Some(val) = board[ri][ci].to_digit(10) {
                         let i = (val - 1) as usize;
                         rows[ri][i] = 1;
                         cols[ci][i] = 1;
@@ -28,7 +26,7 @@ impl Solution {
             }
         }
 
-        Solution::traverse(board, &mut rows, &mut cols, &mut boxs, &mut empties, n);
+        Solution::traverse(board, &mut rows, &mut cols, &mut boxs, &mut empties);
     }
 
     pub fn traverse(
@@ -36,8 +34,7 @@ impl Solution {
         rows: &mut Vec<Vec<i32>>,
         cols: &mut Vec<Vec<i32>>,
         boxs: &mut Vec<Vec<i32>>,
-        empties: &mut Vec<(usize, usize, usize)>,
-        n: usize,
+        empties: &mut Vec<(usize, usize, usize)>
     ) -> bool {
         if empties.is_empty() {
             return true;
@@ -45,9 +42,9 @@ impl Solution {
 
         let (ri, ci, bi) = empties[empties.len() - 1];
 
-        for i in 0..n {
+        for i in 0..9 {
             if (rows[ri][i] > 0 || cols[ci][i] > 0 || boxs[bi][i] > 0) == false {
-                if let Some(val) = char::from_digit((i + 1) as u32, (n + 1) as u32) {
+                if let Some(val) = char::from_digit((i + 1) as u32, 10) {
                     board[ri][ci] = val;
                     rows[ri][i] = 1;
                     cols[ci][i] = 1;
@@ -55,7 +52,7 @@ impl Solution {
                 }
 
                 if let Some(pre) = empties.pop() {
-                    if Solution::traverse(board, rows, cols, boxs, empties, n) {
+                    if Solution::traverse(board, rows, cols, boxs, empties) {
                         return true;
                     }
 

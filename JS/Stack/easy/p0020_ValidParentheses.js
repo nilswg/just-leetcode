@@ -48,10 +48,16 @@ var isValid = function (s) {
   };
 
   for (const c of s) {
-    const cur = mp[c];
-    const back = stack[stack.length - 1];
-    if (!cur || cur !== back) stack.push(c);
-    else stack.pop();
+    if (!mp[c]) {
+      stack.push(c);
+      continue;
+    }
+
+    if (stack.length > 0 && stack.pop() === mp[c]) {
+      continue;
+    } else {
+      return false;
+    }
   }
 
   return !stack.length;
@@ -64,6 +70,7 @@ var isValid = function (s) {
   console.log(isValid('()') === true);
   console.log(isValid('()[]{}') === true);
   console.log(isValid('(]') === false);
+  console.log(isValid('[') === false);
 
   console.log('All Testing Passed ✅');
 })();
