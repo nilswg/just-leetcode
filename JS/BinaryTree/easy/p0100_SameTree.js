@@ -8,7 +8,8 @@ import { TreeNode } from '../binaryTree.js';
 // Given the roots of two binary trees p and q, write a function to check if they are the same or not.
 
 // 解題重點
-// 1. 樹的走訪
+// 1.瞭解二元樹的走訪
+// 2.瞭解如何使用 DFS、BFS
 
 // 解題思路
 //
@@ -95,7 +96,7 @@ var isSameTree = function (p, q) {
 
 // 測試
 (function () {
-  console.log('Testing [isSameTree_Brute]...');
+  console.log('Testing [isSameTreeBFS]...');
 
   console.log(
     isSameTreeBFS(
@@ -110,7 +111,7 @@ var isSameTree = function (p, q) {
     ) === false
   );
 
-  console.log('Testing [isSameTree]...');
+  console.log('Testing [isSameTreeDFS]...');
 
   console.log(
     isSameTree(
@@ -124,10 +125,6 @@ var isSameTree = function (p, q) {
       new TreeNode(1, null, new TreeNode(2))
     ) === false
   );
-
-  /**
-   * Write Some Testing here
-   */
 
   console.log('All Testing Passed ✅');
 })();
