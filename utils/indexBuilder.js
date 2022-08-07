@@ -17,6 +17,7 @@ import SOLUTIONS from './solutions.js';
   const __dirname = dirname(__filename);
 
   /**
+   * 讓輸出的文字符合固定長度輸出，不足用空白補足，超出則置換為'...'
    *
    * @param {string} str
    * @param {number} size
