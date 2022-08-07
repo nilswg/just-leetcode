@@ -103,11 +103,10 @@ const genHrefString = (url) => {
    *
    *      -> relativeFilePath: '/JS/p0001_TwoSum.js'
    *
-   *      -> https://github.com/nilswg/just-leetcode/blob/main//JS/p0001_TwoSum.js
    */
-  const relativeFilePath = url.split(PROJECT_DIRNAME)[1];
+  const relativeFilePath = url.split(`${PROJECT_DIRNAME}`)[1];
 
-  return GITHUB_URL + relativeFilePath;
+  return relativeFilePath;
 };
 
 /**
@@ -246,13 +245,13 @@ function save(url, data) {
    *     js: {
    *       seq: '0001',
    *       name: 'p0001_twoSum.js',
-   *       url: 'https://github.com/nilswg/just-leetcode/blob/main//JS/HashMap/easy/p0001_twoSum.js',
+   *       url: '/JS/HashMap/easy/p0001_twoSum.js',
    *       extension: 'js'
    *     },
    *     rs: {
    *       seq: '0001',
    *       name: 'p0001_two_sum.rs',
-   *       url: 'https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0001_two_sum.rs',
+   *       url: '/Rust/src/problems/p0001_two_sum.rs',
    *       extension: 'rs'
    *     }
    *   },
@@ -281,32 +280,94 @@ function save(url, data) {
   /**
    * 產生上半部的表格
    */
-  function appendSolutionItems(solItems, sol) {
+  // function appendSolutionItems(solItems, sol) {
+  //   if (sol) {
+  //     const solTag = `p${sol.seq}_${sol.extension}`;
+  //     // if (solItems[0] === '') {
+  //     //   solItems[0] = setToFit(sol.name, 40);
+  //     // }
+  //     const itemStr = `[✔][${solTag}]`;
+  //     solItems.push(setToFit(itemStr, 15));
+  //   } else {
+  //     solItems.push(setToFit('', 15));
+  //   }
+  // }
+
+  /**
+   *
+   * 產生上半部的表格中的項目(item)
+   *
+   * @param {*} sol
+   * @returns {string}
+   */
+  function getSolutionItem(sol) {
     if (sol) {
+      /**
+       * e.g :
+       *    sol =
+       *    {
+       *       seq: '0001',
+       *       name: 'p0001_twoSum.js',
+       *       url: '/JS/HashMap/easy/p0001_twoSum.js',
+       *       extension: 'js'
+       *    },
+       *
+       *    -> solTag  = 'p0001_js',
+       *
+       *    -> solItem = '[✔][p0001_js]'
+       */
       const solTag = `p${sol.seq}_${sol.extension}`;
-      if (solItems[0] === '') {
-        solItems[0] = setToFit(sol.name, 40);
-      }
       const itemStr = `[✔][${solTag}]`;
-      solItems.push(setToFit(itemStr, 15));
+      return setToFit(itemStr, 15);
     } else {
-      solItems.push(setToFit('', 15));
+      return setToFit('', 15);
     }
   }
 
   /**
    * 產生對應表格中隱藏的Links。
    */
-  function appendSolutionLinks(solLinks, sol) {
+  // function appendSolutionLinks(solLinks, sol) {
+  //   if (sol) {
+  //     const solTag = `p${sol.seq}_${sol.extension}`;
+  //     // if (solLinks[0] === '') {
+  //     //   solLinks[0] = `<!-- ${sol.seq} -->\n`;
+  //     // }
+  //     const linkStr = `[${solTag}]: ${GITHUB_URL}${[sol.url]}\n`;
+  //     solLinks.push(linkStr);
+  //   } else {
+  //     solLinks.push('');
+  //   }
+  // }
+
+  /**
+   *
+   * 產生對應表格中隱藏的Links。
+   *
+   * @param {*} sol
+   * @returns {string}
+   */
+  function getSolutionLink(sol) {
     if (sol) {
+      /**
+       * e.g :
+       *    sol =
+       *    {
+       *       seq: '0001',
+       *       name: 'p0001_twoSum.js',
+       *       url: '/JS/HashMap/easy/p0001_twoSum.js',
+       *       extension: 'js'
+       *    },
+       *
+       *    -> solTag  = 'p0001_js',
+       *
+       *    -> solLink = '[p0001_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashMap/easy/p0001_twoSum.js'
+       */
       const solTag = `p${sol.seq}_${sol.extension}`;
-      if (solLinks[0] === '') {
-        solLinks[0] = `<!-- ${sol.seq} -->\n`;
-      }
-      const linkStr = `[${solTag}]: ${[sol.url]}\n`;
-      solLinks.push(linkStr);
+      const linkStr = `[${solTag}]: ${GITHUB_URL}${[sol.url]}\n`;
+      return linkStr;
     } else {
-      solLinks.push('');
+      return '';
     }
   }
 
@@ -326,8 +387,19 @@ function save(url, data) {
 
       META.list.forEach(({ extension }) => {
         const sol = solMap[seq][extension];
-        appendSolutionItems(solItems, sol);
-        appendSolutionLinks(solLinks, sol);
+        // if (solItems[0] === '') {
+        //   solItems[0] = setToFit(sol.name, 40);
+        // }
+        if (solItems[0] === '') {
+          solItems[0] = setToFit(sol.name, 40);
+        }
+        // appendSolutionItems(solItems, sol);
+        solItems.push(getSolutionItem(sol));
+        if (solLinks[0] === '') {
+          solLinks[0] = `<!-- ${sol.seq} -->\n`;
+        }
+        // appendSolutionLinks(solLinks, sol);
+        solLinks.push(getSolutionLink(sol));
       });
 
       paras[0] += '|' + solItems.join('|') + '|\n';
