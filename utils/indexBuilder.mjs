@@ -1,12 +1,12 @@
 // @ts-check
-import { readdirSync, statSync, writeFile } from 'fs';
-import path, { resolve as pathResolve, dirname } from 'path';
+import { writeFile } from 'fs';
+import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import CONFIG from './config.js';
-import SOLUTIONS from './solutions.js';
+import CONFIG from './config.mjs';
+import SOLUTIONS from './solutions.mjs';
 
 (async (CONFIG, SOLUTIONS) => {
-  const { LANGS, INDEX_OUT_PATH, GITHUB_URL, PROJECT_DIRNAME } = CONFIG;
+  const { LANGS, INDEX_OUT_PATH, GITHUB_URL } = CONFIG;
 
   const { solsMap } = SOLUTIONS;
 

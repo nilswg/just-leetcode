@@ -15,7 +15,7 @@ const CONFIG = {
   INDEX_OUT_PATH: '../README.md',
 
   /** Debug文件的生成路徑 */
-  DEBUG_OUT_PATH: '../launch.json',
+  DEBUG_OUT_PATH: '../.vscode/launch.json',
 };
 
 export default CONFIG;

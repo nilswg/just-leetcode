@@ -1,8 +1,8 @@
 // @ts-check
-import { readdirSync, statSync, writeFile } from 'fs';
+import { readdirSync, statSync } from 'fs';
 import path, { resolve as pathResolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import CONFIG from './config.js';
+import CONFIG from './config.mjs';
 
 const SOLUTIONS = (function ({ LANGS, PROJECT_DIRNAME }) {
   /** __filename */
