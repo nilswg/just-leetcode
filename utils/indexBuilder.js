@@ -278,22 +278,6 @@ function save(url, data) {
   );
 
   /**
-   * 產生上半部的表格
-   */
-  // function appendSolutionItems(solItems, sol) {
-  //   if (sol) {
-  //     const solTag = `p${sol.seq}_${sol.extension}`;
-  //     // if (solItems[0] === '') {
-  //     //   solItems[0] = setToFit(sol.name, 40);
-  //     // }
-  //     const itemStr = `[✔][${solTag}]`;
-  //     solItems.push(setToFit(itemStr, 15));
-  //   } else {
-  //     solItems.push(setToFit('', 15));
-  //   }
-  // }
-
-  /**
    *
    * 產生上半部的表格中的項目(item)
    *
@@ -323,22 +307,6 @@ function save(url, data) {
       return setToFit('', 15);
     }
   }
-
-  /**
-   * 產生對應表格中隱藏的Links。
-   */
-  // function appendSolutionLinks(solLinks, sol) {
-  //   if (sol) {
-  //     const solTag = `p${sol.seq}_${sol.extension}`;
-  //     // if (solLinks[0] === '') {
-  //     //   solLinks[0] = `<!-- ${sol.seq} -->\n`;
-  //     // }
-  //     const linkStr = `[${solTag}]: ${GITHUB_URL}${[sol.url]}\n`;
-  //     solLinks.push(linkStr);
-  //   } else {
-  //     solLinks.push('');
-  //   }
-  // }
 
   /**
    *
@@ -387,18 +355,13 @@ function save(url, data) {
 
       META.list.forEach(({ extension }) => {
         const sol = solMap[seq][extension];
-        // if (solItems[0] === '') {
-        //   solItems[0] = setToFit(sol.name, 40);
-        // }
         if (solItems[0] === '') {
           solItems[0] = setToFit(sol.name, 40);
         }
-        // appendSolutionItems(solItems, sol);
         solItems.push(getSolutionItem(sol));
         if (solLinks[0] === '') {
           solLinks[0] = `<!-- ${sol.seq} -->\n`;
         }
-        // appendSolutionLinks(solLinks, sol);
         solLinks.push(getSolutionLink(sol));
       });
 
