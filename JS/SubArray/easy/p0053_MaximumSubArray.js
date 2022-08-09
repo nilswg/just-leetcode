@@ -22,7 +22,6 @@
 // 複雜度 (暴力解)
 // Time Complexity : O(N^2)
 // Space Complexity: O(1)
-
 /**
  * @param {number[]} nums
  * @return {number}
@@ -41,14 +40,26 @@ var maxSubArray_brute = function (nums) {
   return max;
 };
 
-
-
 // 複雜度 (遞迴，TopDown)
 // Time Complexity : O(N)
 // Space Complexity: O(N)
-// (略)
-
-
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArrayTopDown = function (nums) {
+  let max = -10000;
+  const helper = (nums, i) => {
+    if (i < 0) return -10000;
+    let acc = Math.max(nums[i], nums[i] + helper(nums, i - 1));
+    if (acc > max) {
+      max = acc;
+    }
+    return acc;
+  };
+  helper(nums, nums.length - 1);
+  return max;
+};
 
 // 複雜度 (遞迴，BottomUp 優化解)
 // Time Complexity : O(N)
@@ -58,15 +69,14 @@ var maxSubArray_brute = function (nums) {
  * @return {number}
  */
 var maxSubArray = function (nums) {
-  let max = nums[0];
-  let acc = nums[0];
-  for(let i = 1; i < nums.length; i++) {
+  let acc = -10000;
+  let max = -10000;
+  for (const num of nums) {
+    // 求出當前位置 i 所能達到的最大加總 (maximum acc)。
+    acc = Math.max(acc + num, num);
 
-      // 求出當前位置 i 所能達到的最大加總 (maximum acc)。
-      acc = Math.max(acc + nums[i], nums[i]);
-
-      // 再將此值 (maximum acc) 與當前 max 比較。
-      max = Math.max(max, acc);
+    // 再將此值 (maximum acc) 與當前 max 比較。
+    max = Math.max(acc, max);
   }
   return max;
 };
@@ -79,6 +89,13 @@ var maxSubArray = function (nums) {
   console.log(maxSubArray_brute([1, 2]) === 3);
   console.log(maxSubArray_brute([-2, 1]) === 1);
   console.log(maxSubArray_brute([-1]) === -1);
+
+  console.log('Testing [maxSubArrayTopDown]...');
+  console.log(maxSubArrayTopDown([-2, 1, -3, 4, -1, 2, 1, -5, 4]) === 6);
+  console.log(maxSubArrayTopDown([1]) === 1);
+  console.log(maxSubArrayTopDown([1, 2]) === 3);
+  console.log(maxSubArrayTopDown([-2, 1]) === 1);
+  console.log(maxSubArrayTopDown([-1]) === -1);
 
   console.log('Testing [maxSubArray]...');
   console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]) === 6);
