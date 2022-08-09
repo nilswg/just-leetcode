@@ -29,9 +29,11 @@
 |p0206_ReverseLinkedList                 |[✔][p0206_js]  |[✔][p0206_rs]  |
 |p0215_KthLargestElementInArray          |[✔][p0215_js]  |[✔][p0215_rs]  |
 |p0226_InvertBinaryTree                  |[✔][p0226_js]  |               |
+|p0232_ImplementQueueUsingStacks         |[✔][p0232_js]  |               |
 |p0235_LowestCommonAncestorofaBinarySe...|[✔][p0235_js]  |               |
 |p0239_slidingWindowMaximum              |[✔][p0239_js]  |[✔][p0239_rs]  |
 |p0242_ValidAnagram                      |[✔][p0242_js]  |               |
+|p0278_FirstBadVersion                   |[✔][p0278_js]  |               |
 |p0395_longestSubStringWithAtLeastRepe...|[✔][p0395_js]  |               |
 |p0429_NaryTreeLevelOrderTraversal       |[✔][p0429_js]  |               |
 |p0430_FlattenMultilevelDoublyLinkedList |[✔][p0430_js]  |               |
@@ -125,6 +127,9 @@
 <!-- 0226 -->
 [p0226_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinaryTree/easy/p0226_InvertBinaryTree.js
 
+<!-- 0232 -->
+[p0232_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/Quene/easy/p0232_ImplementQueueUsingStacks.js
+
 <!-- 0235 -->
 [p0235_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinaryTree/easy/p0235_LowestCommonAncestorofaBinarySearchTree.js
 
@@ -134,6 +139,9 @@
 
 <!-- 0242 -->
 [p0242_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/easy/p0242_ValidAnagram.js
+
+<!-- 0278 -->
+[p0278_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinarySearch/easy/p0278_FirstBadVersion.js
 
 <!-- 0395 -->
 [p0395_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SlidingWindow/medium/p0395_longestSubStringWithAtLeastRepeatingCharacters.js
