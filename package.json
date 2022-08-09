@@ -5,8 +5,13 @@
   "main": "",
   "type": "module",
   "scripts": {
-    "build-index": "node ./utils/indexBuilder.js"
+    "build-index": "node ./utils/indexBuilder.mjs",
+    "build-debug": "node ./utils/debugBuilder.mjs",
+    "build-js": "node ./utils/jsTemplateBuilder.mjs"
   },
   "author": "nilswg",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.2.10"
+  }
 }
