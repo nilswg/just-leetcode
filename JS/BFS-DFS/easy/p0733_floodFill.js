@@ -134,7 +134,7 @@ var floodFillDFS = function (image, sr, sc, color) {
 // 自我延伸練習: DFS-BackTracking
 //
 // 複雜度
-// Time Complexity : O(N)
+// Time Complexity : O(MN)
 // Space Complexity: O(N)
 
 /**
@@ -184,129 +184,54 @@ var floodFillBackTracking = function (image, sr, sc, color) {
 (function () {
   console.log('Testing [p0079_floodFill]...');
 
+  const testingWith = (floodFillFn) => {
+    console.log(
+      isArrayEqual(
+        floodFillFn(
+          [
+            [1, 1, 0],
+            [1, 1, 0],
+            [1, 0, 1],
+          ],
+          1,
+          1,
+          2
+        ),
+        [
+          [2, 2, 0],
+          [2, 2, 0],
+          [2, 0, 1],
+        ]
+      ) === true
+    );
+
+    console.log(
+      isArrayEqual(
+        floodFillFn(
+          [
+            [0, 0, 0],
+            [0, 0, 0],
+          ],
+          0,
+          0,
+          0
+        ),
+        [
+          [0, 0, 0],
+          [0, 0, 0],
+        ]
+      ) === true
+    );
+  };
+
   console.log('Testing [floodFillBFS]...');
-
-  console.log(
-    isArrayEqual(
-      floodFillBFS(
-        [
-          [1, 1, 0],
-          [1, 1, 0],
-          [1, 0, 1],
-        ],
-        1,
-        1,
-        2
-      ),
-      [
-        [2, 2, 0],
-        [2, 2, 0],
-        [2, 0, 1],
-      ]
-    ) === true
-  );
-  [
-    [0, 0, 0],
-    [0, 0, 0],
-  ];
-
-  console.log(
-    isArrayEqual(
-      floodFillBFS(
-        [
-          [0, 0, 0],
-          [0, 0, 0],
-        ],
-        0,
-        0,
-        0
-      ),
-      [
-        [0, 0, 0],
-        [0, 0, 0],
-      ]
-    ) === true
-  );
+  testingWith(floodFillBFS);
 
   console.log('Testing [floodFillDFS]...');
-
-  console.log(
-    isArrayEqual(
-      floodFillDFS(
-        [
-          [1, 1, 0],
-          [1, 1, 0],
-          [1, 0, 1],
-        ],
-        1,
-        1,
-        2
-      ),
-      [
-        [2, 2, 0],
-        [2, 2, 0],
-        [2, 0, 1],
-      ]
-    ) === true
-  );
-
-  console.log(
-    isArrayEqual(
-      floodFillDFS(
-        [
-          [0, 0, 0],
-          [0, 0, 0],
-        ],
-        0,
-        0,
-        0
-      ),
-      [
-        [0, 0, 0],
-        [0, 0, 0],
-      ]
-    ) === true
-  );
+  testingWith(floodFillDFS);
 
   console.log('Testing [floodFillBackTracking]...');
-
-  console.log(
-    isArrayEqual(
-      floodFillBackTracking(
-        [
-          [1, 1, 0],
-          [1, 1, 0],
-          [1, 0, 1],
-        ],
-        1,
-        1,
-        2
-      ),
-      [
-        [2, 2, 0],
-        [2, 2, 0],
-        [2, 0, 1],
-      ]
-    ) === true
-  );
-
-  console.log(
-    isArrayEqual(
-      floodFillBackTracking(
-        [
-          [0, 0, 0],
-          [0, 0, 0],
-        ],
-        0,
-        0,
-        0
-      ),
-      [
-        [0, 0, 0],
-        [0, 0, 0],
-      ]
-    ) === true
-  );
+  testingWith(floodFillBackTracking);
 
   console.log('All Testing Passed ✅');
 })();
