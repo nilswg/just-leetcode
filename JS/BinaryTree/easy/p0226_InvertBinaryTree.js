@@ -89,33 +89,27 @@ var invertTree = function (root) {
 (function () {
   console.log('Testing [p0226_invertTree]...');
 
-  const r1 = new TreeNode(
-    4,
-    new TreeNode(2, new TreeNode(1), new TreeNode(3)),
-    new TreeNode(7, new TreeNode(6), new TreeNode(9))
-  );
+  const testingWith = (invertedTreeFn) => {
+    const t1 = new TreeNode(
+      4,
+      new TreeNode(2, new TreeNode(1), new TreeNode(3)),
+      new TreeNode(7, new TreeNode(6), new TreeNode(9))
+    );
 
-  const inverted_r1 = new TreeNode(
-    4,
-    new TreeNode(7, new TreeNode(9), new TreeNode(6)),
-    new TreeNode(2, new TreeNode(3), new TreeNode(1))
-  );
+    const inverted_t1 = new TreeNode(
+      4,
+      new TreeNode(7, new TreeNode(9), new TreeNode(6)),
+      new TreeNode(2, new TreeNode(3), new TreeNode(1))
+    );
 
-  console.log('invertTreeHelper', isSameTree(invertTree(r1), inverted_r1));
+    console.log(isSameTree(invertedTreeFn(t1), inverted_t1));
+  };
 
-  const r2 = new TreeNode(
-    4,
-    new TreeNode(2, new TreeNode(1), new TreeNode(3)),
-    new TreeNode(7, new TreeNode(6), new TreeNode(9))
-  );
+  console.log('Testing [invertTreeHelper]');
+  testingWith(invertTreeHelper);
 
-  const inverted_r2 = new TreeNode(
-    4,
-    new TreeNode(7, new TreeNode(9), new TreeNode(6)),
-    new TreeNode(2, new TreeNode(3), new TreeNode(1))
-  );
-
-  console.log('invertTree', isSameTree(invertTree(r2), inverted_r2));
+  console.log('Testing [invertTree]');
+  testingWith(invertTree);
 
   console.log('All Testing Passed ✅');
 })();
