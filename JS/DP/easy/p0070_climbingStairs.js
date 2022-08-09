@@ -40,11 +40,21 @@
 
 // Solution1 : 暴力解
 //
+//                    f(5)
+//              /             \
+//           f(4)              f(3)
+//         /      \           /   \
+//      f(3)     f(2)       f(2)   f(1)
+//      /  \     /   \      /   \
+//    f(2) f(1) f(1) f(0) f(1)  f(0)
+//    /  \
+//  f(1) f(0)
+//
 // 沒有任何優化前，其決策樹結構接近二元樹，Time Complexity: O(2^N)
 //
 // 複雜度
 // Time Complexity : O(2^N)
-// Space Complexity: O(??)
+// Space Complexity: O(N) ； N 即決策樹的高度
 
 /**
  * @param {number} n
@@ -63,11 +73,21 @@ var climbStairsBrute = function (n) {
 
 // Solution2 : 使用 DP
 //
-// 將相同節點進行保存後，其決策樹結構為單臂的左子樹，其深度為 n，Time Complexity: O(N)
+//                dp[5]
+//              /       \
+//            dp[4]     dp[3](可重用)
+//          /      \
+//        dp[3]    dp[2](可重用)
+//       /   \
+//    dp[2]  dp[1](可重用)
+//    /   \
+//  dp[1]  dp[0]
+//
+// 將相同節點進行保存後，其決策樹結構為單臂的左子樹，其深度為 N，Time Complexity: O(N)
 //
 // 複雜度
 // Time Complexity : O(N)
-// Space Complexity: O(N)
+// Space Complexity: O(N) ； N 即決策樹的高度
 
 /**
  * @param {number} n
@@ -88,6 +108,8 @@ var climbStairsDP = function (n) {
 };
 
 // Solution3 : 使用 BottomUp
+//
+// f(0) + f(1) -> f(2) -> f(3) -> f(4) -> f(5)
 //
 // 採用 BottomUp 優化儲存空間， Space Complexity: O(1)。
 //
