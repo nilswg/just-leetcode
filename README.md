@@ -16,6 +16,7 @@
 |p0037_SudokuSolver                      |[✔][p0037_js]  |[✔][p0037_rs]  |
 |p0046_Permutations                      |[✔][p0046_js]  |               |
 |p0053_MaximumSubArray                   |[✔][p0053_js]  |[✔][p0053_rs]  |
+|p0070_climbingStairs                    |[✔][p0070_js]  |               |
 |p0092_ReverseLinkedListII               |[✔][p0092_js]  |               |
 |p0100_SameTree                          |[✔][p0100_js]  |               |
 |p0101_SummetricTree                     |[✔][p0101_js]  |               |
@@ -86,6 +87,9 @@
 <!-- 0053 -->
 [p0053_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SubArray/easy/p0053_MaximumSubArray.js
 [p0053_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0053_maximum_subarray.rs
+
+<!-- 0070 -->
+[p0070_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/DP/easy/p0070_climbingStairs.js
 
 <!-- 0092 -->
 [p0092_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/LinkedList/medium/p0092_ReverseLinkedListII.js
