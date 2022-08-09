@@ -34,6 +34,7 @@
 |p0239_slidingWindowMaximum              |[✔][p0239_js]  |[✔][p0239_rs]  |
 |p0242_ValidAnagram                      |[✔][p0242_js]  |               |
 |p0278_FirstBadVersion                   |[✔][p0278_js]  |               |
+|p0383_RansomNote                        |[✔][p0383_js]  |               |
 |p0395_longestSubStringWithAtLeastRepe...|[✔][p0395_js]  |               |
 |p0429_NaryTreeLevelOrderTraversal       |[✔][p0429_js]  |               |
 |p0430_FlattenMultilevelDoublyLinkedList |[✔][p0430_js]  |               |
@@ -142,6 +143,9 @@
 
 <!-- 0278 -->
 [p0278_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinarySearch/easy/p0278_FirstBadVersion.js
+
+<!-- 0383 -->
+[p0383_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/easy/p0383_RansomNote.js
 
 <!-- 0395 -->
 [p0395_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SlidingWindow/medium/p0395_longestSubStringWithAtLeastRepeatingCharacters.js
