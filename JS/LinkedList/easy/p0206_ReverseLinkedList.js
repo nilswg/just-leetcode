@@ -1,6 +1,6 @@
 // @ts-check
 
-import { isLinkedListEqual, LinkedList, ListNode } from '../index.js';
+import { isLinkedListEqual, LinkedList, ListNode } from '../linkedList.js';
 
 // 題目鏈結
 // https://leetcode.com/problems/reverse-linked-list/
@@ -79,14 +79,14 @@ import { isLinkedListEqual, LinkedList, ListNode } from '../index.js';
  * @return {ListNode}
  */
 var reverseList = function (head) {
-  let pre = null;  //反轉後 pre 會成為新的head後返回
+  let pre = null;     //反轉後 pre 會成為新的head後返回
   while (head) {
-    let tmp = head;  // tmp 就像一個錨節點
-    head = tmp.next; // tmp 幫助 head 移動的下一節點
-    tmp.next = pre;  // tmp 反轉指針指向 pre
-    pre = tmp;       // tmp 幫助 pre 移動到下一節點，完成一次循環。
+    let node = head;  // node 就像一個錨節點
+    head = node.next; // node 幫助 head 移動的下一節點
+    node.next = pre;  // node 反轉指針指向 pre
+    pre = node;       // node 幫助 pre 移動到下一節點，完成一次循環。
   }
-  return pre;
+  return pre; // 當走訪所有節點反轉完成後，原本最後節點反而變成頭節點。
 };
 
 // 測試
