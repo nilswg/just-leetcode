@@ -22,6 +22,7 @@
 |p0100_SameTree                          |[✔][p0100_js]  |               |
 |p0101_SummetricTree                     |[✔][p0101_js]  |               |
 |p0102_BinaryTreeLevelOrderTraversal     |[✔][p0102_js]  |               |
+|p0104_maximumDepthOfBinaryTree          |[✔][p0104_js]  |               |
 |p0108_ConvertSortedArraytoBinarySearc...|[✔][p0108_js]  |               |
 |p0110_BalancedBinaryTree                |[✔][p0110_js]  |               |
 |p0121_BestTimeToBuyAndSellStock         |[✔][p0121_js]  |               |
@@ -31,6 +32,8 @@
 |p0169_majorityElement                   |[✔][p0169_js]  |               |
 |p0206_ReverseLinkedList                 |[✔][p0206_js]  |[✔][p0206_rs]  |
 |p0215_KthLargestElementInArray          |[✔][p0215_js]  |[✔][p0215_rs]  |
+|p0217_containsDuplicate                 |[✔][p0217_js]  |               |
+|p0219_containsDuplicateIi               |[✔][p0219_js]  |               |
 |p0226_InvertBinaryTree                  |[✔][p0226_js]  |               |
 |p0229_majorityElementIi                 |[✔][p0229_js]  |               |
 |p0232_ImplementQueueUsingStacks         |[✔][p0232_js]  |               |
@@ -112,6 +115,9 @@
 <!-- 0102 -->
 [p0102_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinaryTree/medium/p0102_BinaryTreeLevelOrderTraversal.js
 
+<!-- 0104 -->
+[p0104_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinaryTree/easy/p0104_maximumDepthOfBinaryTree.js
+
 <!-- 0108 -->
 [p0108_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinaryTree/easy/p0108_ConvertSortedArraytoBinarySearchTree.js
 
@@ -140,6 +146,12 @@
 <!-- 0215 -->
 [p0215_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/Sort/medium/p0215_KthLargestElementInArray.js
 [p0215_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0215_kth_largest_element_in_an_array.rs
+
+<!-- 0217 -->
+[p0217_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/easy/p0217_containsDuplicate.js
+
+<!-- 0219 -->
+[p0219_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/easy/p0219_containsDuplicateIi.js
 
 <!-- 0226 -->
 [p0226_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinaryTree/easy/p0226_InvertBinaryTree.js
