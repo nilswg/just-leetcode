@@ -141,7 +141,7 @@ ${getContent(data)}
 
 // 測試
 (function () {
-  console.log('Testing [${qName}]...');
+  console.log('Testing [${qFileName}]...');
 
   /**
    * Write Some Testing here
