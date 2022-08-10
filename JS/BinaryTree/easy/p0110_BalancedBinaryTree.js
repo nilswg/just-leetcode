@@ -1,6 +1,6 @@
 // @ts-check
 
-import { TreeNode } from '../binaryTree.js';
+import { TreeNode, buildTreeNodes } from '../binaryTree.js';
 
 // 題目鏈結
 // https://leetcode.com/problems/balanced-binary-tree/
@@ -133,23 +133,23 @@ var isBalancedBrute = function (root) {
  *
  * 複雜度
  * Time Complexity : O(N)
- * Space Complexity: O(logN)*
+ * Space Complexity: O(logN)
  *
  * @param {TreeNode} root
  * @return {boolean}
  */
 var isBalancedDFS = function (root) {
   let res = true;
-  let helper = (node, h = 0) => {
-    if (!node) return h;
-    let lt = helper(node.left, h + 1);
-    let rt = helper(node.right, h + 1);
+  let helper = (node) => {
+    if (!node) return 0;
+    let lt = helper(node.left);
+    let rt = helper(node.right);
 
     if (Math.abs(lt - rt) > 1) {
       res = false;
     }
 
-    return Math.max(lt, rt);
+    return Math.max(lt, rt) + 1;
   };
 
   helper(root);
@@ -171,10 +171,10 @@ var isBalancedDFS = function (root) {
  * @return {boolean}
  */
 var isBalanced = function (root) {
-  let getHeight = (node, h = 0) => {
-    if (!node) return h;
-    let lt = getHeight(node.left, h + 1);
-    let rt = getHeight(node.right, h + 1);
+  let getHeight = (node) => {
+    if (!node) return 0;
+    let lt = getHeight(node.left);
+    let rt = getHeight(node.right);
 
     // 檢查左右子樹是否皆為height-balanced，若 <0 表示其下層子樹已為 non height-balanced，則直接返回 -1，向上傳遞此訊息。
     if (lt < 0 || rt < 0) {
@@ -186,7 +186,7 @@ var isBalanced = function (root) {
       return -1;
     }
 
-    return Math.max(lt, rt);
+    return Math.max(lt, rt) + 1;
   };
 
   // 假如高度 >-1 則表示為 height-balanced
@@ -198,37 +198,44 @@ var isBalanced = function (root) {
   console.log('Testing [p0110_BalancedBinaryTree]...');
 
   const testingWith = (isBalancedFn) => {
-    let t1 = new TreeNode(
-      3,
-      new TreeNode(9),
-      new TreeNode(20, new TreeNode(15), new TreeNode(7))
-    );
-
+    /**
+     *                 3
+     *                / \
+     *               9   20
+     *                   / \
+     *                  15  7
+     */
+    let t1 = buildTreeNodes([3, 9, 20, null, null, 15, 7]);
     console.log(isBalancedFn(t1) === true);
 
-    let t2 = new TreeNode(
-      1,
-      new TreeNode(
-        2,
-        new TreeNode(3, new TreeNode(4), new TreeNode(4)),
-        new TreeNode(3)
-      ),
-      new TreeNode(2)
-    );
-
+    /**
+     *                 1
+     *                / \
+     *               2   2
+     *              / \
+     *             3   3
+     *            / \
+     *           4   4
+     */
+    let t2 = buildTreeNodes([1, 2, 2, 3, 3, null, null, 4, 4]);
     console.log(isBalancedFn(t2) === false);
 
-    let t3 = new TreeNode(
-      1,
-      new TreeNode(2, new TreeNode(3, new TreeNode(4))),
-      new TreeNode(2, new TreeNode(3, new TreeNode(4)))
-    );
+    /**
+     *                 1
+     *                / \
+     *               2   2
+     *              /   /
+     *             3   3
+     *            /   /
+     *           4   4
+     */
+    let t3 = buildTreeNodes([1, 2, 2, 3, null, 3, null, 4, null]);
     console.log(isBalancedFn(t3) === false);
 
-    let t4 = new TreeNode(null);
+    let t4 = buildTreeNodes([]); // new TreeNode(null)
     console.log(isBalancedFn(t4) === true);
 
-    let t5 = null; // []
+    let t5 = null;
     console.log(isBalancedFn(t5) === true);
   };
 

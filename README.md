@@ -16,6 +16,7 @@
 |p0037_SudokuSolver                      |[✔][p0037_js]  |[✔][p0037_rs]  |
 |p0046_Permutations                      |[✔][p0046_js]  |               |
 |p0053_MaximumSubArray                   |[✔][p0053_js]  |[✔][p0053_rs]  |
+|p0067_addBinary                         |[✔][p0067_js]  |               |
 |p0070_climbingStairs                    |[✔][p0070_js]  |               |
 |p0092_ReverseLinkedListII               |[✔][p0092_js]  |               |
 |p0100_SameTree                          |[✔][p0100_js]  |               |
@@ -44,9 +45,11 @@
 |p0430_FlattenMultilevelDoublyLinkedList |[✔][p0430_js]  |               |
 |p0454_fourSumii                         |[✔][p0454_js]  |               |
 |p0480_SlidingWindowMedium               |[✔][p0480_js]  |               |
+|p0543_diameterOfBinaryTree              |[✔][p0543_js]  |               |
 |p0704_BinarySearch                      |[✔][p0704_js]  |               |
 |p0733_floodFill                         |[✔][p0733_js]  |               |
 |p0844_BackspaceStringCompare            |[✔][p0844_js]  |               |
+|p0876_middleOfTheLinkedList             |[✔][p0876_js]  |               |
 
 <!-- 0001 -->
 [p0001_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/easy/p0001_twoSum.js
@@ -90,6 +93,9 @@
 <!-- 0053 -->
 [p0053_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SubArray/easy/p0053_MaximumSubArray.js
 [p0053_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0053_maximum_subarray.rs
+
+<!-- 0067 -->
+[p0067_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/Numbers/easy/p0067_addBinary.js
 
 <!-- 0070 -->
 [p0070_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/DP/easy/p0070_climbingStairs.js
@@ -178,6 +184,9 @@
 <!-- 0480 -->
 [p0480_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SlidingWindow/hard/p0480_SlidingWindowMedium.js
 
+<!-- 0543 -->
+[p0543_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinaryTree/easy/p0543_diameterOfBinaryTree.js
+
 <!-- 0704 -->
 [p0704_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinarySearch/easy/p0704_BinarySearch.js
 
@@ -186,4 +195,7 @@
 
 <!-- 0844 -->
 [p0844_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/TwoPointers/easy/p0844_BackspaceStringCompare.js
+
+<!-- 0876 -->
+[p0876_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/LinkedList/easy/p0876_middleOfTheLinkedList.js
 
