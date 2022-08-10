@@ -27,9 +27,11 @@
 |p0125_ValidPalindrome                   |[✔][p0125_js]  |               |
 |p0141_LinkedListCycle                   |[✔][p0141_js]  |               |
 |p0146_LRUCache                          |[✔][p0146_js]  |               |
+|p0169_majorityElement                   |[✔][p0169_js]  |               |
 |p0206_ReverseLinkedList                 |[✔][p0206_js]  |[✔][p0206_rs]  |
 |p0215_KthLargestElementInArray          |[✔][p0215_js]  |[✔][p0215_rs]  |
 |p0226_InvertBinaryTree                  |[✔][p0226_js]  |               |
+|p0229_majorityElementIi                 |[✔][p0229_js]  |               |
 |p0232_ImplementQueueUsingStacks         |[✔][p0232_js]  |               |
 |p0235_LowestCommonAncestorofaBinarySe...|[✔][p0235_js]  |               |
 |p0239_slidingWindowMaximum              |[✔][p0239_js]  |[✔][p0239_rs]  |
@@ -37,6 +39,7 @@
 |p0278_FirstBadVersion                   |[✔][p0278_js]  |               |
 |p0383_RansomNote                        |[✔][p0383_js]  |               |
 |p0395_longestSubStringWithAtLeastRepe...|[✔][p0395_js]  |               |
+|p0409_longestPalindrome                 |[✔][p0409_js]  |               |
 |p0429_NaryTreeLevelOrderTraversal       |[✔][p0429_js]  |               |
 |p0430_FlattenMultilevelDoublyLinkedList |[✔][p0430_js]  |               |
 |p0454_fourSumii                         |[✔][p0454_js]  |               |
@@ -121,6 +124,9 @@
 <!-- 0146 -->
 [p0146_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/LinkedList/medium/p0146_LRUCache.js
 
+<!-- 0169 -->
+[p0169_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/easy/p0169_majorityElement.js
+
 <!-- 0206 -->
 [p0206_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/LinkedList/easy/p0206_ReverseLinkedList.js
 [p0206_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0206_reverse_linked_list.rs
@@ -131,6 +137,9 @@
 
 <!-- 0226 -->
 [p0226_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinaryTree/easy/p0226_InvertBinaryTree.js
+
+<!-- 0229 -->
+[p0229_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/medium/p0229_majorityElementIi.js
 
 <!-- 0232 -->
 [p0232_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/Quene/easy/p0232_ImplementQueueUsingStacks.js
@@ -153,6 +162,9 @@
 
 <!-- 0395 -->
 [p0395_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SlidingWindow/medium/p0395_longestSubStringWithAtLeastRepeatingCharacters.js
+
+<!-- 0409 -->
+[p0409_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/easy/p0409_longestPalindrome.js
 
 <!-- 0429 -->
 [p0429_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/BinaryTree/medium/p0429_NaryTreeLevelOrderTraversal.js
