@@ -52,7 +52,7 @@ var levelOrderDFS = function (root) {
  *           / \
  *          15  7
  *
- *              quene       res
+ *              queue       res
  *   T=0,       [3]         []
  *   T=1,       [9, 20]     [[3]]
  *   T=2,       [15, 7]     [[3],[9, 20]]
@@ -67,15 +67,15 @@ var levelOrderDFS = function (root) {
 var levelOrder = function (root) {
   if (!root) return [];
   let res = [];
-  let quene = [root];
+  let queue = [root];
   let lt = 0; // 改良，避免使用 shift或是 slice的方式去清空quene。
-  while (quene.length > lt) {
+  while (queue.length > lt) {
     let level = [];
-    for (let i = lt, n = quene.length; i < n; i++) {
-      const node = quene[i];
+    for (let i = lt, n = queue.length; i < n; i++) {
+      const node = queue[i];
       level.push(node.val);
-      if (node.left) quene.push(node.left);
-      if (node.right) quene.push(node.right);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
       lt += 1;
     }
     res.push(level);

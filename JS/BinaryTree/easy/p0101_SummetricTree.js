@@ -33,17 +33,17 @@ import { TreeNode } from '../binaryTree.js';
  * @return {boolean}
  */
 var isSymmetricBFS = function (root) {
-  let quene = [];
-  quene.push([root.left, root.right]);
+  let queue = [];
+  queue.push([root.left, root.right]);
 
-  while (quene.length > 0) {
-    const [p, q] = quene.pop();
+  while (queue.length > 0) {
+    const [p, q] = queue.pop();
 
     if (!p && !q) continue;
     if (!p || !q) return false;
     if (p.val !== q.val) return false;
-    quene.push([p.left, q.right]);
-    quene.push([p.right, q.left]);
+    queue.push([p.left, q.right]);
+    queue.push([p.right, q.left]);
   }
   return true;
 };

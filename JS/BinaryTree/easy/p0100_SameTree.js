@@ -15,7 +15,7 @@ import { TreeNode } from '../binaryTree.js';
 //
 /**
  * 使用 BFS
- * 透過 quene 去逐層比對，但是這作法會需要額外的儲存空間
+ * 透過 queue 去逐層比對，但是這作法會需要額外的儲存空間
  *
  * 分析空間複雜度，對於一個節點數量為N 的二元樹，其高度為 logN，當我們逐層比較時，
  * 其quene須保存的最大數量，即最底層(第N層)的節點數量，亦是前第0至N-1層的總和，再扣1。
@@ -45,10 +45,10 @@ import { TreeNode } from '../binaryTree.js';
 // Space Complexity: O(logN)
 
 var isSameTreeBFS = function (p, q) {
-  let quene = [[p, q]];
+  let queue = [[p, q]];
 
-  while (quene.length > 0) {
-    const [p, q] = quene.pop();
+  while (queue.length > 0) {
+    const [p, q] = queue.pop();
 
     // 空點則跳過。 同 (p === null && q === null)
     if (!p && !q) continue;
@@ -57,8 +57,8 @@ var isSameTreeBFS = function (p, q) {
     if (!p || !q) return false;
     if (p.val !== q.val) return false;
 
-    quene.push([p.left, q.left]);
-    quene.push([p.right, q.right]);
+    queue.push([p.left, q.left]);
+    queue.push([p.right, q.right]);
   }
   return true;
 };

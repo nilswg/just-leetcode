@@ -2,22 +2,22 @@ BFS
 ---
 廣度優先搜尋
 
-### Quene(佇列)
+### Queue(佇列)
 
 ```js
 function bfs(start) {
-  let quene = [];
-  quene.push([start])
+  let queue = new Queue();
+  queue.enqueue([start])
 
-  while(quene.length > 0) {
-    const [node] = quene.pop();
+  while(queue.length > 0) {
+    const [node] = queue.dequeue();
 
     // do something...
     process(node);
 
-    // add new nodes to quene
+    // add new nodes to queue
     const newNodes = getNewNodes(node)
-    quene.push(newNodes);
+    queue.push(newNodes);
   }
 }
 ```

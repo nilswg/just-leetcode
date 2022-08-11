@@ -48,7 +48,7 @@ var brute = function (nums, k) {
  * Space Complexity: O(N)
  *
  *  k = 3,
- *  i   position                            monotonic quene        max         res
+ *  i   position                            monotonic queue        max         res
  *
  *  0   [3], 3,  -1,  -3,  5,  3,  6,  7        [3]                 3          []
  *
@@ -71,7 +71,7 @@ var brute = function (nums, k) {
  *
  *
  *  k = 1,
- *  i   position         monotonic quene        max         res
+ *  i   position         monotonic queue        max         res
  *
  *  0   [1], -1,             [1]                 1          [1]
  *
@@ -79,7 +79,7 @@ var brute = function (nums, k) {
  *
  *
  *  k = 2,
- *  i   position         monotonic quene        max         res
+ *  i   position         monotonic queue        max         res
  *
  *  0   [7], 2,  4,          [7]                 7          []
  *
@@ -89,27 +89,27 @@ var brute = function (nums, k) {
  */
 
 class MonotonicQuene {
-  quene;
+  queue;
   constructor() {
-    this.quene = [];
+    this.queue = [];
   }
   push(val) {
     /**
      * 把其他比自己小的都移除掉。
      *
-     * before: quene [3,-2,-1] , push 3
-     * after : quene [3, 3]
+     * before: queue [3,-2,-1] , push 3
+     * after : queue [3, 3]
      */
-    while (this.quene.length > 0 && val > this.quene[this.quene.length - 1]) {
-      this.quene.pop();
+    while (this.queue.length > 0 && val > this.queue[this.queue.length - 1]) {
+      this.queue.pop();
     }
-    this.quene.push(val);
+    this.queue.push(val);
   }
   pop() {
-    return this.quene.shift();
+    return this.queue.shift();
   }
   max() {
-    return this.quene[0];
+    return this.queue[0];
   }
 }
 
@@ -122,19 +122,19 @@ var useMonotonicQuene = function (nums, k) {
   if (nums.length < 2) {
     return nums;
   }
-  const quene = new MonotonicQuene();
+  const queue = new MonotonicQuene();
   let res = [];
   let lt = 0;
   for (let i = 0; i < k - 1; i++) {
-    quene.push(nums[i]);
+    queue.push(nums[i]);
   }
   for (let i = k - 1; i < nums.length; i++) {
-    quene.push(nums[i]);
+    queue.push(nums[i]);
     // window開始滑動。
-    res.push(quene.max());
+    res.push(queue.max());
     // 檢查，接下來
-    if (nums[lt] === quene.max()) {
-      quene.pop();
+    if (nums[lt] === queue.max()) {
+      queue.pop();
     }
     lt += 1; //超過window大小，lt開始向右移動。
   }
@@ -143,26 +143,26 @@ var useMonotonicQuene = function (nums, k) {
 
 // 優化重點
 // shift 是一個相當昂貴的運算式。
-// 我們改用 quene 儲存 index 而不是值。
+// 我們改用 queue 儲存 index 而不是值。
 // 如此一來，便可用位址來判斷是否溢出範圍，使用 ">="，而非 ">"，便能大幅度地減少使用 shift
 
 // BST 優化
 // const quenePush = (i, val = nums[i]) => {
 //   let l = 0;
-//   let r = quene.length - 1;
+//   let r = queue.length - 1;
 //   while (l <= r) {
 //     let m = Math.floor((l + r) / 2);
-//     if (val === nums[quene[m]]) {
+//     if (val === nums[queue[m]]) {
 //       l = m;
 //       break;
-//     } else if (val > nums[quene[m]]) {
+//     } else if (val > nums[queue[m]]) {
 //       r = --m;
 //     } else {
 //       l = ++m;
 //     }
 //   }
-//   quene.length = l + 1;
-//   quene[l] = i;
+//   queue.length = l + 1;
+//   queue[l] = i;
 // };
 
 // Runtime: 347 ms, faster than 96.12% of JavaScript online submissions for Sliding Window Maximum.

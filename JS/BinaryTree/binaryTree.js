@@ -25,7 +25,7 @@ export function buildTreeNodes(values = []) {
   const root = new TreeNode(values[0]);
 
   /**
-   * 生成Tree所需的 quene
+   * 生成Tree所需的 queue
    */
   const queue = [root];
 

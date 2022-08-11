@@ -35,11 +35,11 @@
 // In other words, performing n operations will take overall O(n) time even if one of those operations may take longer.
 
 // 解題重點
-// 瞭解 Quene 與 Stack 兩者的特性，FIFO vs FILO
+// 瞭解 Queue 與 Stack 兩者的特性，FIFO vs FILO
 // 時間複雜度必須為 amortized O(1) (amortized 平攤的意思，平均下來達到 O(1))
 
 // 解題思路
-// 嘗試用兩個Stack去實作 quene；一個順序是正的，負責pop，另一個則是反著，負責push
+// 嘗試用兩個Stack去實作 queue；一個順序是正的，負責pop，另一個則是反著，負責push
 // 交替使用 pop 或 push 時，都會發生兩個 stack 交換資料的情形。
 // 應向面試官詢問使用情境，有效地避免 Worst Case 的方式來實作，
 //  (以下作法在反覆使用 pop、push 時會發生 Worst Case)

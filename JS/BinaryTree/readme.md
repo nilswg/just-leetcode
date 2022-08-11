@@ -180,16 +180,16 @@ Output: ['a', 'b', 'c', 'd', 'e', 'f']
 ```js
 var bfs = (root) => {
   let res = [];
-  let quene = [root];
+  let queue = [root];
 
-  while (quene.length > 0) {
-    const curr = quene.shift();
+  while (queue.length > 0) {
+    const curr = queue.shift();
     res.push(curr.val);
     if (curr.left !== null) {
-      quene.push(curr.left);
+      queue.push(curr.left);
     }
     if (curr.right !== null) {
-      quene.push(curr.right);
+      queue.push(curr.right);
     }
   }
 

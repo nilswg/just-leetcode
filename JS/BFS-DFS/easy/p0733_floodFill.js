@@ -59,13 +59,13 @@ var floodFillBFS = function (image, sr, sc, color) {
     return image;
   }
 
-  let quene = [[sr, sc]];
+  let queue = [[sr, sc]];
   let m = image.length;
   let n = image[0].length;
   let originalColor = image[sr][sc];
 
-  while (quene.length > 0) {
-    const [r, c] = quene.pop();
+  while (queue.length > 0) {
+    const [r, c] = queue.pop();
 
     // 超出範圍
     if (r < 0 || c < 0 || r >= m || c >= n) {
@@ -79,10 +79,10 @@ var floodFillBFS = function (image, sr, sc, color) {
 
     image[r][c] = color;
 
-    quene.push([r + 1, c]);
-    quene.push([r - 1, c]);
-    quene.push([r, c + 1]);
-    quene.push([r, c - 1]);
+    queue.push([r + 1, c]);
+    queue.push([r - 1, c]);
+    queue.push([r, c + 1]);
+    queue.push([r, c - 1]);
   }
   return image;
 };
