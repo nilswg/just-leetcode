@@ -33,12 +33,17 @@ import { isArrayEqual, Queue } from '../bfs-dfs.js';
 // 1.瞭解DFS、BFS的特性，去說明為什麼BFS會更適合此體
 // 2.無論使用DFS或BFS去實作此題，我們依然發現會"超時"(Time Limit Exceeded)
 // 3.瞭解多源廣度優先搜尋法(Multi-source BFS) 的應用
+// 4.改用DP去實作，優化空間複雜度為O(1)
 
 // 解題思路
-// 1.
-// 2.
+// 1.逐點搜尋，使用DFS-BackTracking
+// 2.逐點搜尋，使用BFS + Queue
+// 3.多點搜尋，使用Muili-source BFS
+// 4.使用DP優化BFS
 
-// Solution : DFS -BackTracking
+// Solution : DFS-BackTracking
+//
+// 使用DFS逐點去搜尋(MN)，共有MN個點，會"超時"(Time Limit Exceeded)
 //
 // 複雜度
 // Time Complexity : O((mn)^2)
@@ -86,10 +91,10 @@ var updateMatrixDFS = function (mat) {
   return res;
 };
 
-// Solution : BFS
+// Solution : BFS (單點)
 //
-// 即使使用了DFS或是BFS去實作此題，我們依然發現會"超時"(Time Limit Exceeded)
-// 因為單個點的時間複雜度為 O(MN)，如果要製作所有點，則時間複雜度就是 O((MN)^2)
+// 無論使用DFS、BFS去實作此題，皆會"超時"(Time Limit Exceeded)
+// 因為單個點的時間複雜度為 O(MN)，如果要搜尋所有點，則時間複雜度就是 O((MN)^2)
 //
 // 複雜度
 // Time Complexity : O((mn)^2)
@@ -157,11 +162,11 @@ var updateMatrixBFS = function (mat) {
 };
 
 /**
- * Solution : Muiti-source BFS
+ * Solution : Muiti-source BFS (多點)
  *
  * 1. 即使使用了DFS去實作此題，我們依然發現會"超時"(Time Limit Exceeded)
  *    因為單個點的時間複雜度為 O(MN)，如果要製作所有點，則時間複雜度就是 O((MN)^2)
- * 2. 使用Multi-Source BFS ，由於從多點啟動，將避免重複的檢查，能使時間複雜降低為 O(MN)
+ * 2. 使用Multi-Source BFS ，改以多點來搜尋，且以0作為源點，優化時間複雜降為 O(MN)
  *
  * 複雜度
  * Time Complexity : O(mn)
@@ -181,22 +186,25 @@ var updateMatrixMultiSourceBFS = function (mat) {
     [0, -1],
   ];
 
-  let queue = new Queue();
+  let queue = [];
+  let qi = 0;
   let dist = Array(m)
     .fill(0)
     .map((x) => Array(n).fill(-1));
 
+  // 先找 0 ，將其作為源點放入queue中
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < n; j++) {
       if (mat[i][j] === 0) {
         dist[i][j] = 0; // 將源點設置成 0 表示已經拜訪過。
-        queue.enqueue([i, j, 0]); //放入源點位址
+        queue.push([i, j, 0]); //放入源點位址
       }
     }
   }
 
-  while (!queue.isEmpty()) {
-    const [i, j, d] = queue.dequeue();
+  while (queue.length > qi) {
+    const [i, j, d] = queue[qi];
+      qi += 1;
 
     for (const [di, dj] of directions) {
       const ni = i + di;
@@ -209,10 +217,14 @@ var updateMatrixMultiSourceBFS = function (mat) {
       // 給他設置距離
       if (dist[ni][nj] === -1) {
         dist[ni][nj] = d + 1;
-        queue.enqueue([ni, nj, d + 1]);
+        queue.push([ni, nj, d + 1]);
       }
     }
   }
+
+    queue.length = 0;
+    qi = 0;
+
 
   return dist;
 };
@@ -254,35 +266,25 @@ var updateMatrixMultiSourceBFS = function (mat) {
 var updateMatrixDP = function (mat) {
   let m = mat.length;
   let n = mat[0].length;
-  let INF = m + n;
+  const INF = m + n;
 
-  // top -> bottom, left -> right
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < n; j++) {
       if (mat[i][j] !== 0) {
-        let top = INF,
-          left = INF;
-        // check row above
-        if (i > 0) top = mat[i - 1][j];
-        // check col to the left
-        if (j > 0) left = mat[i][j - 1];
-
-        mat[i][j] = Math.min(top, left) + 1;
+        let up = mat[i - 1]?.[j] ?? INF;
+        let lt = mat[i]?.[j - 1] ?? INF;
+        mat[i][j] = Math.min(up + 1, lt + 1);
       }
     }
   }
-  // bottom -> top, right -> left
-  for (let i = m - 1; i >= 0; i--) {
-    for (let j = n - 1; j >= 0; j--) {
-      if (mat[i][j] === 0) continue;
-      let bottom = INF,
-        right = INF;
-      // check row below
-      if (i < m - 1) bottom = mat[i + 1][j];
-      // check col to the right
-      if (j < n - 1) right = mat[i][j + 1];
 
-      mat[i][j] = Math.min(mat[i][j], Math.min(bottom, right) + 1);
+  for (let i = m - 1; i > -1; i--) {
+    for (let j = n - 1; j > -1; j--) {
+      if (mat[i][j] !== 0) {
+        let dn = mat[i + 1]?.[j] ?? INF;
+        let rt = mat[i]?.[j + 1] ?? INF;
+        mat[i][j] = Math.min(mat[i][j], dn + 1, rt + 1);
+      }
     }
   }
 
