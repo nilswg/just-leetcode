@@ -52,6 +52,9 @@
  * @return {number[][]}
  */
 var insertIntervalSplice = function (intervals, newInterval) {
+  if (!newInterval) {
+    return intervals;
+  }
   intervals.push(newInterval);
   intervals.sort((a, b) => a[0] - b[0]);
 
@@ -76,16 +79,21 @@ var insertIntervalSplice = function (intervals, newInterval) {
  * 2. 我們改使用雙指針的方式:
  *    i : 指向合併完成後要回填的位址
  *    i, j : 指向當前要進行合併的對象
+ * 3. 限制條件上，newIntervals 不可為空。
+ * 4. 開始時，i=0, j=1,
+ *    (1) 無重疊，intervals[i+1] = intervals[j]；
+ *               i+=1； j+=1
+ *    (2) 重疊時，intervals[i][1] = Math.max(intervals[i][1], intervals[j][1])；
+ *               i 不變； j+=1
+ *    (3) 結束後，intervals.length = i+1，表示僅留下有效的部分。
  *
  *  e.g
- *   intervals   : [[1,2],[3,5],[6,7],[8,10],[12,16]] ,
- *   newInterval : [4,8]
+ *   intervals : [[1,2],[3,5],[6,7],[8,10],[12,16]],  newInterval : [4,8]
  *
- *   after sort
- *   -> [[1,2],[3,5],[4,8],[6,7],[8,10],[12,16]]
+ *   排序後, intervals : [[1,2],[3,5],[4,8],[6,7],[8,10],[12,16]]
  *
  *   T = 0, i = 0, j = 1, [1,2], [3,5] 無重疊
- *   -> [3,5] 放到 i+1 位址,
+ *   -> [3,5] 放到 i+1 位址, (i的下一筆位置)
  *   -> i +=1,
  *   -> j +=1
  *
@@ -109,7 +117,9 @@ var insertIntervalSplice = function (intervals, newInterval) {
  *   -> i +=1,
  *   -> j +=1
  *
- *   T = 5, i = 2, j = 6 (j < intervals.length) 返回結果
+ *   T = 5, i = 2, j = 6 (j < intervals.length) 結束迴圈
+ *   -> intervals.length = 3 (i+1)
+ *   -> 返回結果 intervals
  *
  * 複雜度
  * Time Complexity : O(N)
@@ -120,23 +130,25 @@ var insertIntervalSplice = function (intervals, newInterval) {
  * @returns
  */
 var insertIntervalTwoPointers = function (intervals, newInterval) {
+  if (!newInterval) {
+    return intervals;
+  }
+
   intervals.push(newInterval);
   intervals.sort((a, b) => a[0] - b[0]);
 
   let i = 0;
-  for (let j = 1, n = intervals.length; j < n; j++) {
-    const cur = intervals[i];
-    const nxt = intervals[j];
+  let n = intervals.length;
 
-    if (nxt[0] <= cur[1]) {
-      intervals[i][0] = Math.min(cur[0], nxt[0]);
-      intervals[i][1] = Math.max(cur[1], nxt[1]);
+  for (let j = 1; j < n; j++) {
+    if (intervals[i][1] >= intervals[j][0]) {
+      intervals[i][1] = Math.max(intervals[i][1], intervals[j][1]);
     } else {
       intervals[i + 1] = intervals[j];
       i += 1;
     }
   }
-  intervals.length = i + 1; //留下intervals有效部分
+  intervals.length = i+1;
   return intervals;
 };
 
@@ -160,6 +172,8 @@ var insertIntervalTwoPointers = function (intervals, newInterval) {
   };
 
   const testingWith = (cb) => {
+    console.log(isEqual(cb([], null), []));
+    console.log(isEqual(cb([], [1, 2]), [[1, 2]]));
     console.log(
       isEqual(
         cb(
@@ -198,10 +212,10 @@ var insertIntervalTwoPointers = function (intervals, newInterval) {
   };
 
   console.log('Testing [insertIntervalSplice]...');
-  testingWith(insertIntervalSplice)
+  testingWith(insertIntervalSplice);
 
   console.log('Testing [insertIntervalTwoPointers]...');
-  testingWith(insertIntervalTwoPointers)
+  testingWith(insertIntervalTwoPointers);
 
   console.log('All Testing Passed ✅');
 })();
