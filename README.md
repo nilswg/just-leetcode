@@ -6,7 +6,7 @@
 |:---------------------------------------|:-------------:|:-------------:|
 |p0001_twoSum                            |[✔][p0001_js]  |[✔][p0001_rs]  |
 |p0002_AddTwoNumbers                     |[✔][p0002_js]  |[✔][p0002_rs]  |
-|p0003_lengthOfLongestSubstring          |[✔][p0003_js]  |[✔][p0003_rs]  |
+|p0003_longestSubstringWithoutRepeatin...|[✔][p0003_js]  |[✔][p0003_rs]  |
 |p0015_threeSum                          |[✔][p0015_js]  |[✔][p0015_rs]  |
 |p0018_fourSum                           |[✔][p0018_js]  |               |
 |p0020_ValidParentheses                  |[✔][p0020_js]  |               |
@@ -66,7 +66,7 @@
 [p0002_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0002_add_two_numbers.rs
 
 <!-- 0003 -->
-[p0003_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SlidingWindow/medium/p0003_lengthOfLongestSubstring.js
+[p0003_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/SlidingWindow/medium/p0003_longestSubstringWithoutRepeatingCharacters.js
 [p0003_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0003_length_of_longest_substring.rs
 
 <!-- 0015 -->
