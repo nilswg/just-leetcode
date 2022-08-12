@@ -32,7 +32,7 @@
 |p0146_LRUCache                          |[✔][p0146_js]  |               |
 |p0169_majorityElement                   |[✔][p0169_js]  |               |
 |p0206_ReverseLinkedList                 |[✔][p0206_js]  |[✔][p0206_rs]  |
-|p0215_KthLargestElementInArray          |[✔][p0215_js]  |[✔][p0215_rs]  |
+|p0215_kthLargestElementInAnArray        |[✔][p0215_js]  |[✔][p0215_rs]  |
 |p0217_containsDuplicate                 |[✔][p0217_js]  |               |
 |p0219_containsDuplicateIi               |[✔][p0219_js]  |               |
 |p0226_InvertBinaryTree                  |[✔][p0226_js]  |               |
@@ -55,6 +55,7 @@
 |p0733_floodFill                         |[✔][p0733_js]  |               |
 |p0844_BackspaceStringCompare            |[✔][p0844_js]  |               |
 |p0876_middleOfTheLinkedList             |[✔][p0876_js]  |               |
+|p0973_kClosestPointsToOrigin            |[✔][p0973_js]  |               |
 
 <!-- 0001 -->
 [p0001_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/HashTable/easy/p0001_twoSum.js
@@ -149,7 +150,7 @@
 [p0206_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0206_reverse_linked_list.rs
 
 <!-- 0215 -->
-[p0215_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/Sort/medium/p0215_KthLargestElementInArray.js
+[p0215_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/Sort/medium/p0215_kthLargestElementInAnArray.js
 [p0215_rs]: https://github.com/nilswg/just-leetcode/blob/main//Rust/src/problems/p0215_kth_largest_element_in_an_array.rs
 
 <!-- 0217 -->
@@ -218,4 +219,7 @@
 
 <!-- 0876 -->
 [p0876_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/LinkedList/easy/p0876_middleOfTheLinkedList.js
+
+<!-- 0973 -->
+[p0973_js]: https://github.com/nilswg/just-leetcode/blob/main//JS/Sort/medium/p0973_kClosestPointsToOrigin.js
 
