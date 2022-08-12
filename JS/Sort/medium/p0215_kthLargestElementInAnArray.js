@@ -104,11 +104,12 @@
  * @returns
  */
 var findKthLargest = function (nums, k) {
+
   const target = k - 1;
   const partition = (st, ed) => {
-    if (st === ed) return nums[st];
 
-    // 降低 worst case發生機會
+    // 改用亂數產生 p 位址減少 WorstCase 機會。
+    // let pivot = nums[st]
     let p = Math.floor(Math.random() * (ed - st + 1)) + st;
     let pivot = nums[p];
     nums[p] = nums[st]; //只要把亂數取出的數值替換就好
