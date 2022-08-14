@@ -43,7 +43,7 @@
 // 交替使用 pop 或 push 時，都會發生兩個 stack 交換資料的情形。
 // 應向面試官詢問使用情境，有效地避免 Worst Case 的方式來實作，
 //  (以下作法在反覆使用 pop、push 時會發生 Worst Case)
-//  (最佳實作 deQuene 的方式，應該是使用"雙向鏈結串列"與"HashMap")
+//  (最佳實作 deQueue 的方式，應該是使用"雙向鏈結串列"與"HashMap")
 
 // 複雜度
 // Time Complexity : O(N)

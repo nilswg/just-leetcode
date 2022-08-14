@@ -134,7 +134,7 @@ var updateMatrixBFS = function (mat) {
         const ni = i + di;
         const nj = j + dj;
 
-        // 改成放入前檢查，這可以減少quene的最大數量。
+        // 改成放入前檢查，這可以減少queue的最大數量。
         if (ni < 0 || nj < 0 || ni >= m || nj >= n) continue;
         if (seen[ni][nj]) continue;
         if (mat[ni][nj] === 0) return d + 1;
@@ -210,7 +210,7 @@ var updateMatrixMultiSourceBFS = function (mat) {
       const ni = i + di;
       const nj = j + dj;
 
-      // 先判斷避免quene塞入過多無效的點
+      // 先判斷避免queue塞入過多無效的點
       // 超出邊界
       if (ni < 0 || nj < 0 || ni >= m || nj >= n) continue;
 

@@ -25,7 +25,7 @@ import { isArrayEqual, Node } from '../binaryTree.js';
 
 // 複雜度
 // Time Complexity : O(N)
-// Space Complexity: O(N) (額外使用quene來儲存)
+// Space Complexity: O(N) (額外使用queue來儲存)
 
 /**
  * @param {Node|null} root

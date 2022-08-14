@@ -12,7 +12,7 @@ import { buildTreeNodes, isArrayEqual, TreeNode } from '../binaryTree.js';
 // 解題重點
 // 1. 由於要層層放入，所以需要一個額外的 level 來定位。
 // 2. 題目要求 "由左至右，逐層處理"，因此不可使用DFS方式作答
-// 3. 瞭解BFS，使用Quene來實作此題。
+// 3. 瞭解BFS，使用Queue來實作此題。
 
 // 解題思路
 
@@ -41,9 +41,9 @@ var levelOrderDFS = function (root) {
   return res;
 };
 
-// BFS 複雜度 (使用quene)
+// BFS 複雜度 (使用queue)
 // Time Complexity : O(N)
-// Space Complexity: O(N) (需要額外的quene空間)
+// Space Complexity: O(N) (需要額外的queue空間)
 
 /**
  *         3
@@ -57,7 +57,7 @@ var levelOrderDFS = function (root) {
  *   T=1,       [9, 20]     [[3]]
  *   T=2,       [15, 7]     [[3],[9, 20]]
  *   T=3,       []          [[3],[9, 20],[15,7]]
- *              (quene已空，終止)
+ *              (queue已空，終止)
  */
 
 /**
@@ -68,7 +68,7 @@ var levelOrder = function (root) {
   if (!root) return [];
   let res = [];
   let queue = [root];
-  let lt = 0; // 改良，避免使用 shift或是 slice的方式去清空quene。
+  let lt = 0; // 改良，避免使用 shift或是 slice的方式去清空queue。
   while (queue.length > lt) {
     let level = [];
     for (let i = lt, n = queue.length; i < n; i++) {
@@ -119,7 +119,7 @@ var levelOrder = function (root) {
 // 其他補充
 
 /**
- * 在LeetCode上，官方上有提供JavaScript的Quene類。所以你可以這樣寫。
+ * 在LeetCode上，官方上有提供JavaScript的Queue類。所以你可以這樣寫。
  *
  * var levelOrder = function (root) {
  *   const res = [];

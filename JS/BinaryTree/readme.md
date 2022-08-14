@@ -16,16 +16,16 @@ Space Complextty: O(logN) // logN 即是整棵樹的高度，即是走訪時會�
 
 BFS 查找單一節點來看，
 Time Complexity:  O(N)    // N 即是整棵樹節點的數量，層層查找，最糟需要走訪所有節點
-Space Complexity  O(N)    // 需要額外的quene來儲存
+Space Complexity  O(N)    // 需要額外的queue來儲存
 
 BFS 走訪整棵樹來看
 Time Complexity:  O(N)    // N 即是整棵樹節點的數量
-Space Complexity  O(N)    // 需要額外的quene來儲存
+Space Complexity  O(N)    // 需要額外的queue來儲存
 
 重點:
 1.在大部分對Tree的利用上，更傾向使用DFS來提升效率，在實作上他也相對BFS容易與簡單。
 2.基於BFS是層層走訪，所以在表達樹的組成時最準確一致；
-3.DFS得走訪涉及遞迴、Divide&Conquer ； BFS的走訪則涉及quene的使用。
+3.DFS得走訪涉及遞迴、Divide&Conquer ； BFS的走訪則涉及queue的使用。
 
 ### TreeNode
 ---
@@ -161,7 +161,7 @@ var postorderTraversal = function (root) {
 
 
 ### 樹的廣度度優先搜尋 (Breath-Firsy Search, BFS)
-- Levelorder: 透過 quene來實現。
+- Levelorder: 透過 queue來實現。
 
 ### [0102 binary tree levelorder traversal]
 ---

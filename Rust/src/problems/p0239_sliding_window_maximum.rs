@@ -24,7 +24,7 @@ impl<'a> Solution {
         let mut q = &mut VecDeque::new();
         let k = (k as usize).min(nums.len());  //修正k的大小不得超過 nums的長度。
 
-        let quene_push = |q: &'a mut VecDeque<usize>, i: usize| -> &'a mut VecDeque<usize> {
+        let queue_push = |q: &'a mut VecDeque<usize>, i: usize| -> &'a mut VecDeque<usize> {
             while let Some(&j) = q.back() {
                 if nums[i] >= nums[j] {
                     q.pop_back();
@@ -36,7 +36,7 @@ impl<'a> Solution {
             q
         };
 
-        let quene_pop = |q: &'a mut VecDeque<usize>, i: usize| -> &'a mut VecDeque<usize> {
+        let queue_pop = |q: &'a mut VecDeque<usize>, i: usize| -> &'a mut VecDeque<usize> {
             if let Some(&j) = q.front() {
                 if j as i32 <= (i as i32 - k as i32) {
                     q.pop_front();
@@ -45,9 +45,9 @@ impl<'a> Solution {
             q
         };
         for i in 0..nums.len() {
-            q = quene_push(q, i);
+            q = queue_push(q, i);
             if i >= k - 1 {
-                q = quene_pop(q, i);
+                q = queue_pop(q, i);
                 res.push(nums[q[0]]);
             }
         }

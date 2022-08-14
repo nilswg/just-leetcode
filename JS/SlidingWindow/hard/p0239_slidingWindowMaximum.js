@@ -10,7 +10,7 @@
 // by one position.
 
 // 解題重點
-// 瞭解滑動窗，並使用 DeQuene 儲存位址，每次存放同時剔除小於的數。
+// 瞭解滑動窗，並使用 DeQueue 儲存位址，每次存放同時剔除小於的數。
 // 優化速度上，shift為昂貴的操作，因可能減少其使用；
 // 以位置來存放，好處是對比存放數值，儲放位址能剔除重複的數，減少shift的次數。
 
@@ -41,7 +41,7 @@ var brute = function (nums, k) {
 };
 
 /**
- * 思路二、使用 monotonicQuene
+ * 思路二、使用 monotonicQueue
  *
  * 複雜度
  * Time Complexity : O(N)
@@ -88,7 +88,7 @@ var brute = function (nums, k) {
  *  3    7, [2,  4],         [7, 2]              4          [7, 4]
  */
 
-class MonotonicQuene {
+class MonotonicQueue {
   queue;
   constructor() {
     this.queue = [];
@@ -118,11 +118,11 @@ class MonotonicQuene {
  * @param {number} k
  * @return {number[]}
  */
-var useMonotonicQuene = function (nums, k) {
+var useMonotonicQueue = function (nums, k) {
   if (nums.length < 2) {
     return nums;
   }
-  const queue = new MonotonicQuene();
+  const queue = new MonotonicQueue();
   let res = [];
   let lt = 0;
   for (let i = 0; i < k - 1; i++) {
@@ -147,7 +147,7 @@ var useMonotonicQuene = function (nums, k) {
 // 如此一來，便可用位址來判斷是否溢出範圍，使用 ">="，而非 ">"，便能大幅度地減少使用 shift
 
 // BST 優化
-// const quenePush = (i, val = nums[i]) => {
+// const queuePush = (i, val = nums[i]) => {
 //   let l = 0;
 //   let r = queue.length - 1;
 //   while (l <= r) {
@@ -177,21 +177,21 @@ var useMonotonicQuene = function (nums, k) {
   const res = [];
   const n = nums.length;
   k = Math.min(n, k); // <= 限制 k的大小不超過 nums.length;
-  const quenePush = (q, i) => {
+  const queuePush = (q, i) => {
     while (q.length > 0 && nums[i] >= nums[q[q.length - 1]]) {
       q.pop();
     }
     q.push(i);
   };
-  const quenePop = (q, i) => {
+  const queuePop = (q, i) => {
     if (q[0] <= i - k) {
       q.shift();
     }
   }
   for (let i = 0; i < n; i++) {
-    quenePush(q, i);
+    queuePush(q, i);
     if (i >= k-1){
-        quenePop(q, i);
+        queuePop(q, i);
         res.push(nums[q[0]]);
     }
   }
@@ -220,19 +220,19 @@ var useMonotonicQuene = function (nums, k) {
   // console.log(isEqual(brute([1], 10), [1])); <= err
   console.log(isEqual(brute([], 10), []));
 
-  console.log('Testing useMonotonicQuene ...');
+  console.log('Testing useMonotonicQueue ...');
 
   console.log(
     isEqual(
-      useMonotonicQuene([3, 3, -1, -3, 5, 3, 6, 7], 3),
+      useMonotonicQueue([3, 3, -1, -3, 5, 3, 6, 7], 3),
       [3, 3, 5, 5, 6, 7]
     )
   );
-  console.log(isEqual(useMonotonicQuene([1], 1), [1]));
-  console.log(isEqual(useMonotonicQuene([7, 2, 4], 2), [7, 4]));
-  console.log(isEqual(useMonotonicQuene([1, -1], 1), [1, -1]));
-  console.log(isEqual(useMonotonicQuene([1], 10), [1]));
-  console.log(isEqual(useMonotonicQuene([], 10), []));
+  console.log(isEqual(useMonotonicQueue([1], 1), [1]));
+  console.log(isEqual(useMonotonicQueue([7, 2, 4], 2), [7, 4]));
+  console.log(isEqual(useMonotonicQueue([1, -1], 1), [1, -1]));
+  console.log(isEqual(useMonotonicQueue([1], 10), [1]));
+  console.log(isEqual(useMonotonicQueue([], 10), []));
 
   console.log('Testing 0239_maxSlidingWindow ...');
 
