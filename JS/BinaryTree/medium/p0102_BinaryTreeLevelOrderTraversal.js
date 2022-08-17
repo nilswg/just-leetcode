@@ -68,15 +68,15 @@ var levelOrder = function (root) {
   if (!root) return [];
   let res = [];
   let queue = [root];
-  let lt = 0; // 改良，避免使用 shift或是 slice的方式去清空queue。
-  while (queue.length > lt) {
+  let qi = 0; // 改良，避免使用 shift或是 slice的方式去清空queue。
+  while (queue.length > qi) {
     let level = [];
-    for (let i = lt, n = queue.length; i < n; i++) {
+    for (let i = qi, n = queue.length; i < n; i++) {
       const node = queue[i];
       level.push(node.val);
       if (node.left) queue.push(node.left);
       if (node.right) queue.push(node.right);
-      lt += 1;
+      qi += 1;
     }
     res.push(level);
   }
