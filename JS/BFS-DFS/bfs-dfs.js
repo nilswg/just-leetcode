@@ -24,27 +24,25 @@
 
 /**
  * 簡易的Queue
- * 因為實作 BFS 中，Queue是相當核心的及儲存結構。
- * 某些題目，如果使用 JS 中陣列的 shift 方法來實現 dequeue 效能會非常差。
+ * 因為實作 BFS 中，Queue是相當核心的及儲存結構。對於時間複雜度有要求題目，
+ * 若使用 JS 中陣列的 shift 方法來實現 queue 的pop/dequeue方法，其效能會非常差。
  */
 export class Queue {
 
   constructor() {
-    this._elements = [];
-    this._offset = 0;
+    this._queue = [];
+    this._qi = 0;
   }
 
   enqueue(element) {
-    this._elements.push(element);
+    this._queue.push(element);
   }
 
   dequeue() {
-    const first = this._elements[this._offset];
-    this._offset += 1;
-    return first;
+    return this._queue[this._qi++];
   }
 
   isEmpty() {
-    return this._elements.length === this._offset;
+    return this._queue.length === this._qi;
   }
 }
