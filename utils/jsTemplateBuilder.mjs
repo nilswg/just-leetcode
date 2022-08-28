@@ -1,12 +1,12 @@
 // @ts-check
 
-import { argv } from 'node:process';
+import { argv } from "node:process";
 
-import fetch from 'node-fetch';
-import { writeFile } from 'node:fs';
-import path, { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import cp from 'child_process';
+import fetch from "node-fetch";
+import { writeFile } from "node:fs";
+import path, { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import cp from "child_process";
 
 (async function () {
   /** __filename */
@@ -18,13 +18,13 @@ import cp from 'child_process';
   const qId = argv[2];
   const qName = argv[3];
 
-  const qFileName = `p${qId.padStart(4, '0')}_${camelize(qName)}`;
+  const qFileName = `p${qId.padStart(4, "0")}_${camelize(qName)}`;
   console.log(qFileName);
 
   const outpath = path.join(
     __dirname,
-    '../',
-    `${argv[4] ?? ''}/${qFileName}.js`
+    "../",
+    `${argv[4] ?? ""}/${qFileName}.js`
   );
 
   console.log(outpath);
@@ -35,7 +35,7 @@ import cp from 'child_process';
       .replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) =>
         index === 0 ? letter.toLowerCase() : letter.toUpperCase()
       )
-      .replace(/\s+|-/g, '');
+      .replace(/\s+|-/g, "");
   }
 
   /**
@@ -45,9 +45,9 @@ import cp from 'child_process';
    *
    * -> {index: true, debug: true}
    */
-  const allowedScripts = new Set(['index', 'debug']);
+  const allowedScripts = new Set(["index", "debug"]);
 
-  const runScripts = (argv[5] ?? '').split('-').reduce((prev, curr) => {
+  const runScripts = (argv[5] ?? "").split("-").reduce((prev, curr) => {
     if (allowedScripts.has(curr)) {
       prev[curr] = true;
     }
@@ -102,7 +102,7 @@ import cp from 'child_process';
    *  }
    */
   const data = JSON.parse(body);
-  if (data['status_code'] === 404) {
+  if (data["status_code"] === 404) {
     console.log(`獲取 ${qFileName} 失敗!`);
     return;
   }
@@ -112,19 +112,19 @@ import cp from 'child_process';
    * @returns {string}
    */
   function getContent(data) {
-    let content = '';
+    let content = "";
 
-    content += data?.['message']?.[1]?.['content'];
+    content += data?.["message"]?.[1]?.["content"];
 
     content = content
-      .split('\n')
+      .split("\n")
       .map((x) => `// ${x}`)
-      .join('\n');
+      .join("\n");
 
     content = content
-      .replace(/Example/g, '\n\n// Example')
-      .replace(/Constraints/g, '\n\n// Constraints')
-      .replace(/Follow-up/g, '\n\n// Follow-up');
+      .replace(/Example/g, "\n\n// Example")
+      .replace(/Constraints/g, "\n\n// Constraints")
+      .replace(/Follow-up/g, "\n\n// Follow-up");
 
     return content;
   }
@@ -133,42 +133,44 @@ import cp from 'child_process';
    * 產生 Template
    */
   const outdata = `
-  // @ts-check
+// @ts-check
 
-  // 題目鏈結
-  // https://leetcode.com/problems/${qName}
+// 題目鏈結
+// https://leetcode.com/problems/${qName}
 
-  // 題目說明
-  ${getContent(data)}
+// 題目說明
+${getContent(data)}
 
-  // 解題重點
-  // 1.
-  // 2.
+// 解題重點
+// 1.
+// 2.
 
-  // 解題思路
-  // 1.
-  // 2.
+// 解題思路
+// 1.
+// 2.
 
-  // Solution :
-  //
-  // 複雜度
-  // Time Complexity : O(??)
-  // Space Complexity: O(??)
+/**
+ * Solution : 
+ * 
+ * 複雜度
+ * Time Complexity : O(??)
+ * Space Complexity: O(??)
+ */
+
+/**
+ * Write some code here!
+ */
+
+// 測試
+(function () {
+  console.log('Testing [${qFileName}]...');
 
   /**
-   * Write some code here!
+   * Write Some Testing here
    */
 
-  // 測試
-  (function () {
-    console.log('Testing [${qFileName}]...');
-
-    /**
-     * Write Some Testing here
-     */
-
-    console.log('All Testing Passed ✅');
-  })();
+  console.log('All Testing Passed ✅');
+})();
 
   `;
 
@@ -178,16 +180,16 @@ import cp from 'child_process';
   writeFile(outpath, outdata, function (err) {
     if (err) return console.log(err);
     console.log(`獲取 ${qFileName} 成功!`);
-    console.log('\nAll work is finished successfully !');
+    console.log("\nAll work is finished successfully !");
   });
 
-  if (runScripts['debug']) {
-    console.log('🚀 fork debugBuilder\n');
-    cp.fork(path.join(__dirname, './debugBuilder.mjs'));
+  if (runScripts["debug"]) {
+    console.log("🚀 fork debugBuilder\n");
+    cp.fork(path.join(__dirname, "./debugBuilder.mjs"));
   }
 
-  if (runScripts['index']) {
-    console.log('🚀 fork indexBuilder\n');
-    cp.fork(path.join(__dirname, './indexBuilder.mjs'));
+  if (runScripts["index"]) {
+    console.log("🚀 fork indexBuilder\n");
+    cp.fork(path.join(__dirname, "./indexBuilder.mjs"));
   }
 })();

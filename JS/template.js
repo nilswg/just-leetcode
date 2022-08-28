@@ -8,9 +8,13 @@
 
 // 解題思路
 
-// 複雜度
-// Time Complexity : O(??)
-// Space Complexity: O(??)
+/**
+ * Solution : 
+ * 
+ * 複雜度
+ * Time Complexity : O(??)
+ * Space Complexity: O(??)
+ */
 
 /**
  * Write some code here!
