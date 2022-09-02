@@ -22,7 +22,7 @@
 // Constraints:
 // n == nums.length
 // 1 <= n <= 5 * 10^4
-// -2^31 <= nums[i] <= 2^31 - 1
+// -2³¹ <= nums[i] <= 2³¹ - 1
 //
 
 // Follow-up: Could you solve the problem in linear time and in O(1) space?

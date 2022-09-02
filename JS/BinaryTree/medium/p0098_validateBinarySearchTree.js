@@ -26,7 +26,7 @@ import { buildTreeNodes, TreeNode } from "../binaryTree.js";
 
 // Constraints:
 // The number of nodes in the tree is in the range [1, 10^4].
-// -2^31 <= Node.val <= 2^31 - 1
+// -2³¹ <= Node.val <= 2³¹ - 1
 //
 
 // 解題重點
