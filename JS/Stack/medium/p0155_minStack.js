@@ -115,14 +115,6 @@ class MinStackPairNode {
  * Space Complexity: O(N)
  */
 
-class MinListNode {
-  constructor(val, min, next = null) {
-    this.val = val;
-    this.min = min;
-    this.next = next;
-  }
-}
-
 class MinStackListNode {
   constructor() {
     //實作空點head，最小值為 Infinity
