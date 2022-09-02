@@ -37,27 +37,30 @@
 //
 
 // 解題重點
-// 1. 瞭解DFS與BFS，且思考出使用 BFS 更適合此題
+// 1. 瞭解DFS與BFS。
 // 2. 此題本題屬於BFS走訪2D-Array的基本題型。
 // 3. JS本身無 queue 的數據結構，應能使用"折衷辦法"來達到效果。並思考其對時間與空間複雜度的影響。
 
 // 解題思路
 // 1. 先找尋已經腐敗橘子位置(r,c)，並計算剩餘的新鮮橘子數量(fresh)
-// 2. 再使用 BFS 一步一步讓橘子腐敗(grid[r][c]=2)，最終計算讓所有橘子腐敗的步數。
+// 2. 再使用 BFS 一步一步讓橘子腐敗(grid[r][c]=2)，最終計算讓所有橘子腐敗的時間。
 
 /**
  * Solution : 使用 BFS 走訪
- * 
+ *
  * 使用 BFS 走訪
  * 1. 首先將腐敗的橘子位址放入queue中，並統計剩餘的新鮮橘子數量(fresh)
  * 2. 每次根據腐敗的橘子位址，分別再由上、下、左、右四個方向去搜尋。
  * 3. 承2, 搜尋時驗證該位址是否已經超出範圍與是否為新鮮的橘子(isvalid)
- *    若是，則走訪步數(count)加一；且使其腐敗(grid[r][c] = 2)，新鮮橘子數量(fresh)遞減。
- * 4. bfs結束時，若仍有新鮮橘子(fresh > 0)，返回-1；反之，表示全部腐敗，返回走訪步數(count)。
+ *    若是，則腐爛時間(count)加一；且使其腐敗(grid[r][c] = 2)，新鮮橘子數量(fresh)遞減。
+ * 4. bfs結束時，若橘子全部腐敗，返回腐爛時間(count)；若尚有新鮮橘子(fresh > 0)，返回 -1。
+ * 
+ * 時間複雜度: 所以grid中的元素都會被檢查。為 O(mn)
+ * 空間複雜度: 以最糟狀況來看，grid中所有元素皆是2，起始的 queue大小為 mn 個，故為 O(mn) 
  *
  * 複雜度
- * Time Complexity : O(N)
- * Space Complexity: O(N)
+ * Time Complexity : O(mn) ≓ O(N)  // N, grid中所有的元素數量
+ * Space Complexity: O(mn) ≓ O(N)
  */
 
 /**
@@ -70,45 +73,51 @@ var orangesRottingBFS = function (grid) {
   const isvalid = (r, c) => {
     return r >= 0 && r < m && c >= 0 && c < n && grid[r][c] === 1;
   };
-  const directions = [[0,1], [0,-1], [1, 0], [-1, 0]]
+  const directions = [
+    [0, 1],
+    [0, -1],
+    [1, 0],
+    [-1, 0],
+  ];
   const queue = [];
-  let qi = 0;
 
-  let count = 0; //走訪步數
+  let count = 0; //全部的橘子腐爛時間
   let fresh = 0; //剩餘的新鮮橘子數量
 
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < n; j++) {
       if (grid[i][j] === 2) {
+        //腐爛的橘子位址
         queue.push([i, j, 0]);
       } else if (grid[i][j] === 1) {
+        //新鮮橘子數量
         fresh += 1;
       }
     }
   }
 
-  // 由於每次 queue 執行完都會清空，可以不使用 qi 來取 queue，效能更佳。
+  // 由於每次 queue 執行完都會清空，可以這樣使用。
   // while (queue.length > 0) {
   //   for (let i=0, qn=queue.length; i<qn; i++) {
   //       const [r, c, t] = queue.shift();
-  //       for (const [dr, dc] of directions) { 
+  //       for (const [dr, dc] of directions) {
 
-  while (queue.length > qi) {
-    const [r, c, t] = queue[qi++];
+  while (queue.length > 0) {
+    const [sr, sc, t] = queue.shift();
     for (const [dr, dc] of directions) {
-      const nr = r + dr;
-      const nc = c + dc;
-      if (isvalid(nr, nc)) {
+      const r = sr + dr;
+      const c = sc + dc;
+      if (isvalid(r, c)) {
         // 橘子腐敗，避免重覆計數
-        grid[nr][nc] = 2; 
+        grid[r][c] = 2;
         count = t + 1; // 只會增加
-        fresh -= 1; 
-        queue.push([nr, nc, count]);
+        fresh -= 1;
+        queue.push([r, c, count]);
       }
     }
   }
 
-  // 仍有新鮮橘子位腐敗返回-1；反之返回走訪步數。
+  // 仍有新鮮橘子還沒腐敗返回-1；反之，返回腐爛時間(count)。
   return fresh !== 0 ? -1 : count;
 };
 
@@ -132,10 +141,18 @@ var orangesRottingBFS = function (grid) {
         [1, 0, 1],
       ]) === -1
     );
+    console.log(
+      cb([
+        [2, 0, 0, 0, 0],
+        [1, 1, 0, 0, 2],
+        [0, 1, 1, 1, 1],
+        [0, 1, 0, 0, 1],
+      ]) === 4
+    );
     console.log(cb([[0, 2]]) === 0);
   };
 
-  testingWith(orangesRottingBFS)
+  testingWith(orangesRottingBFS);
 
   console.log("All Testing Passed ✅");
 })();
