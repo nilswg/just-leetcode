@@ -54,10 +54,11 @@ var brute = function (s, t) {
   return stk1.join('') === stk2.join('');
 };
 
-// 雙指針關鍵在於 backSpace 的實作，
-// 1. 進入時給予 backCnt =2, 因為透過 '#' 會忽略一個元素，下一個才是要比較的位址。
-// 2. 若是連續 '#' 則繼續 backCnt += 1; 反之，則 backCnt -= 1;
-// 3. 最後backspace要回傳出 p 的位址。
+// 雙指針關鍵在於 backspace 的實作，
+// 1. 字串反向檢查並使用 del 統計遇到 '#' 要刪除的次數。若是 '#' 則 del += 1; 反之，則 del -= 1;
+// 2. 會持續執行到，最後執行完 backspace 後，將進行比對的 si 位址。
+// 3. s,t 每次執行完backspace後，會對 s[i]、t[j] 進行比對，若相同則繼續比對。
+// 4. 最終 s,t 會執行到字串為空，即 i < 0 && j < 0，表示s,t 完全相同，故直接返回true。
 
 // 雙指針, 複雜度
 // Time Complexity : O(N)
@@ -72,42 +73,44 @@ var backspaceCompare = function (s, t) {
   let i = s.length - 1;
   let j = t.length - 1;
 
-  const backSpace = (s, p) => {
-    if (s[p] !== '#') {
-      return p;
+  const backspace = (str, si) => {
+    let del = 0;
+    while (si >= 0 && (str[si] === '#' || del > 0)) {
+      if (str[si] === '#') {
+        del += 1;
+      } else {
+        del -= 1;
+      }
+      si -= 1;
     }
-    let backCnt = 2;
-    while (backCnt > 0 && p >= 0) {
-      p -= 1;
-      backCnt = s[p] === '#' ? backCnt + 1 : backCnt - 1;
-    }
-    return p;
+    return si;
   };
 
   while (i >= 0 || j >= 0) {
-    i = backSpace(s, i);
-    j = backSpace(t, j);
+    i = backspace(s, i);
+    j = backspace(t, j);
     if (s[i] !== t[j]) {
       return false;
+    } else {
+      i -= 1;
+      j -= 1;
     }
-    i -= 1;
-    j -= 1;
   }
+
   return true;
 };
 
 // 測試
 (function () {
-
   console.log('Testing [backspaceCompare_brute_Solution]...');
   console.log(brute('ab##', 'ad##') === true);
-  console.log(brute("ab##", "c#d#") === true);
+  console.log(brute('ab##', 'c#d#') === true);
   console.log(brute('a#c', 'b') === false);
   console.log(brute('xywrrmp', 'xywrrmu#p') === true);
 
   console.log('Testing [backspaceCompare_optimal_Solution]...');
   console.log(backspaceCompare('ab##', 'ad##') === true);
-  console.log(backspaceCompare("ab##", "c#d#") === true);
+  console.log(backspaceCompare('ab##', 'c#d#') === true);
   console.log(backspaceCompare('a#c', 'b') === false);
   console.log(backspaceCompare('xywrrmp', 'xywrrmu#p') === true);
 
