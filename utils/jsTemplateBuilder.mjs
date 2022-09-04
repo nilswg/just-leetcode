@@ -1,12 +1,12 @@
 // @ts-check
 
-import { argv } from "node:process";
+import { argv } from 'node:process';
 
-import fetch from "node-fetch";
-import { writeFile } from "node:fs";
-import path, { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
-import cp from "child_process";
+import fetch from 'node-fetch';
+import { writeFile } from 'node:fs';
+import path, { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import cp from 'child_process';
 
 (async function () {
   /** __filename */
@@ -18,13 +18,13 @@ import cp from "child_process";
   const qId = argv[2];
   const qName = argv[3];
 
-  const qFileName = `p${qId.padStart(4, "0")}_${camelize(qName)}`;
+  const qFileName = `p${qId.padStart(4, '0')}_${camelize(qName)}`;
   console.log(qFileName);
 
   const outpath = path.join(
     __dirname,
-    "../",
-    `${argv[4] ?? ""}/${qFileName}.js`
+    '../',
+    `${argv[4] ?? ''}/${qFileName}.js`
   );
 
   console.log(outpath);
@@ -35,7 +35,7 @@ import cp from "child_process";
       .replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) =>
         index === 0 ? letter.toLowerCase() : letter.toUpperCase()
       )
-      .replace(/\s+|-/g, "");
+      .replace(/\s+|-/g, '');
   }
 
   /**
@@ -45,9 +45,9 @@ import cp from "child_process";
    *
    * -> {index: true, debug: true}
    */
-  const allowedScripts = new Set(["index", "debug"]);
+  const allowedScripts = new Set(['index', 'debug']);
 
-  const runScripts = (argv[5] ?? "").split("-").reduce((prev, curr) => {
+  const runScripts = (argv[5] ?? '').split('-').reduce((prev, curr) => {
     if (allowedScripts.has(curr)) {
       prev[curr] = true;
     }
@@ -102,7 +102,7 @@ import cp from "child_process";
    *  }
    */
   const data = JSON.parse(body);
-  if (data["status_code"] === 404) {
+  if (data['status_code'] === 404) {
     console.log(`獲取 ${qFileName} 失敗!`);
     return;
   }
@@ -112,19 +112,19 @@ import cp from "child_process";
    * @returns {string}
    */
   function getContent(data) {
-    let content = "";
+    let content = '';
 
-    content += data?.["message"]?.[1]?.["content"];
+    content += data?.['message']?.[1]?.['content'];
 
     content = content
-      .split("\n")
+      .split('\n')
       .map((x) => `// ${x}`)
-      .join("\n");
+      .join('\n');
 
     content = content
-      .replace(/Example/g, "\n\n// Example")
-      .replace(/Constraints/g, "\n\n// Constraints")
-      .replace(/Follow-up/g, "\n\n// Follow-up");
+      .replace(/Example/g, '\n\n// Example')
+      .replace(/Constraints/g, '\n\n// Constraints')
+      .replace(/Follow-up/g, '\n\n// Follow-up');
 
     /**
      *   將問題中的指數值修改成正確的數值形式
@@ -138,23 +138,23 @@ import cp from "child_process";
      *       ->'-10⁷ <= k <= 10⁷'
      *
      */
-    const expos = ["⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"];
+    const expos = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
     for (let i = 1; i < 10; i++) {
-      let expoValue = content.match(new RegExp(`\[-| \]10${i}`, "g"))?.[0]; // "<= 2 * 104" 、 "-104 <="
+      let expoValue = content.match(new RegExp(`\[-| \]10${i}`, 'g'))?.[0]; // "<= 2 * 104" 、 "-104 <="
       if (!expoValue) continue;
-      console.log("find exponential value:", expoValue);
+      console.log('find exponential value:', expoValue);
       content = content
-        .replace(` 10${i}`, ` 10${expos[i]}`) //"2 * 104" -> "2 * 10⁴"
-        .replace(`-10${i} <=`, `-10${expos[i]} <=`); //"-104 <=" -> "-10⁴ <="
+        .replace(new RegExp(` 10${i}`, 'g'), ` 10${expos[i]}`) //"2 * 104" -> "2 * 10⁴"
+        .replace(new RegExp(`-10${i} <=`, 'g'), `-10${expos[i]} <=`); //"-104 <=" -> "-10⁴ <="
     }
 
     /**
      * e.g : -231 <= val <= 231 - 1
-     * 
+     *
      *    -> -2³¹ <= val <= 2³¹ - 1
      */
     let twoExpoStrs = content.match(
-      new RegExp(`-231 <= \[\\w\]\* <= 231 - 1`, "g")
+      new RegExp(`-231 <= \[\\w\]\* <= 231 - 1`, 'g')
     )?.[0];
     if (twoExpoStrs) {
       content = content
@@ -221,16 +221,16 @@ ${getContent(data)}
   writeFile(outpath, outdata, function (err) {
     if (err) return console.log(err);
     console.log(`獲取 ${qFileName} 成功!`);
-    console.log("\nAll work is finished successfully !");
+    console.log('\nAll work is finished successfully !');
   });
 
-  if (runScripts["debug"]) {
-    console.log("🚀 fork debugBuilder\n");
-    cp.fork(path.join(__dirname, "./debugBuilder.mjs"));
+  if (runScripts['debug']) {
+    console.log('🚀 fork debugBuilder\n');
+    cp.fork(path.join(__dirname, './debugBuilder.mjs'));
   }
 
-  if (runScripts["index"]) {
-    console.log("🚀 fork indexBuilder\n");
-    cp.fork(path.join(__dirname, "./indexBuilder.mjs"));
+  if (runScripts['index']) {
+    console.log('🚀 fork indexBuilder\n');
+    cp.fork(path.join(__dirname, './indexBuilder.mjs'));
   }
 })();
