@@ -56,7 +56,7 @@
  * @param {number} k
  * @return {number}
  */
- var quickSelect = function (nums, k) {
+var quickSelect = function (nums, k) {
   const partition = (st, ed) => {
     if (st >= ed) return nums;
     let pivot = nums[st];
@@ -90,6 +90,13 @@
  * 透過已經被確認的點，不須等到全部排序完，得快速返回結果，並且，因為不用分割，每次都只關注其中一條分支，
  * 透過 tail recursion 的特性，空間複雜度從 O(N) -> O(1);
  *
+ * partition 每次固定以最左邊元素為 pivot，假如由小到大排列，先由右至左找出 a (小於pivot)；
+ *           再左至右找出 b (大於pivot)； 將 a,b 倆倆戶換，算法為 l, r 雙指針從兩端相互靠攏，
+ *           直到 l === r，離開迴圈，此時該重和位址，也是 pivot 最後的位址。
+ * 
+ * quickSelect 先從序列中決定一隨機位址，將其交換至最左側。再使用 partition 找出 pivot 最終所在的位址(p)。
+ *           若 p 即是目標就返回，反之，則繼續搜尋，僅關注該目標可能出現的其中一側。
+ *  
  * 時間複雜度: O(N)
  *   The times to call patition recursively is n/2 + n/4 + n/8 ...
  *   N + (n/2 + n/4 + n/8) = 2N
@@ -104,18 +111,10 @@
  * @returns
  */
 var findKthLargest = function (nums, k) {
-
   const target = k - 1;
-  const partition = (st, ed) => {
 
-    // 改用亂數產生 p 位址減少 WorstCase 機會。
-    // let pivot = nums[st]
-    let p = Math.floor(Math.random() * (ed - st + 1)) + st;
-    let pivot = nums[p];
-    nums[p] = nums[st]; //只要把亂數取出的數值替換就好
-
-    let l = st;
-    let r = ed;
+  const partition = (nums, l, r) => {
+    let pivot = nums[l];
 
     while (l < r) {
       while (l < r && nums[r] <= pivot) {
@@ -128,19 +127,29 @@ var findKthLargest = function (nums, k) {
       nums[r] = nums[l];
     }
     nums[l] = pivot;
+    return l;
+  };
 
+  const quickSelect = (st, ed) => {
+    // 改用亂數產生 p 位址減少 WorstCase 機會。
+    let p = Math.floor(Math.random() * (ed - st + 1)) + st;
+    let pivot = nums[p];
+    nums[p] = nums[st];
+    nums[st] = pivot;
+
+    p = partition(nums, st, ed);
     // 每次partition僅選擇一側，優化空間複雜。
     // 且不再返回整個nums，而是找到該位置的值立刻返回。
-    if (l === target) {
-      return nums[l];
-    } else if (l > target) {
-      return partition(st, l - 1);
+    if (p === target) {
+      return nums[p];
+    } else if (p > target) {
+      return quickSelect(st, p - 1);
     } else {
-      return partition(l + 1, ed);
+      return quickSelect(p + 1, ed);
     }
   };
 
-  return partition(0, nums.length - 1);
+  return quickSelect(0, nums.length - 1);
 };
 
 // 測試
