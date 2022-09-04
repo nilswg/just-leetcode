@@ -126,6 +126,42 @@ import cp from "child_process";
       .replace(/Constraints/g, "\n\n// Constraints")
       .replace(/Follow-up/g, "\n\n// Follow-up");
 
+    /**
+     *   將問題中的指數值修改成正確的數值形式
+     *
+     *   e.g : '1 <= nums.length <= 2 * 104'
+     *
+     *       ->'1 <= nums.length <= 2 * 10⁴'
+     *
+     *   e.g : '-107 <= k <= 107'
+     *
+     *       ->'-10⁷ <= k <= 10⁷'
+     *
+     */
+    const expos = ["⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"];
+    for (let i = 1; i < 10; i++) {
+      let expoValue = content.match(new RegExp(`\[-| \]10${i}`, "g"))?.[0]; // "<= 2 * 104" 、 "-104 <="
+      if (!expoValue) continue;
+      console.log("find exponential value:", expoValue);
+      content = content
+        .replace(` 10${i}`, ` 10${expos[i]}`) //"2 * 104" -> "2 * 10⁴"
+        .replace(`-10${i} <=`, `-10${expos[i]} <=`); //"-104 <=" -> "-10⁴ <="
+    }
+
+    /**
+     * e.g : -231 <= val <= 231 - 1
+     * 
+     *    -> -2³¹ <= val <= 2³¹ - 1
+     */
+    let twoExpoStrs = content.match(
+      new RegExp(`-231 <= \[\\w\]\* <= 231 - 1`, "g")
+    )?.[0];
+    if (twoExpoStrs) {
+      content = content
+        .replace(/-231 <=/g, `-2³¹ <=`)
+        .replace(/<= 231 - 1/g, `<= 2³¹ - 1`);
+    }
+
     return content;
   }
 
@@ -164,6 +200,11 @@ ${getContent(data)}
 // 測試
 (function () {
   console.log('Testing [${qFileName}]...');
+
+  // const testingWith = (cb) => { 
+  //   console.log(\`Testing \${cb.name}\`);
+  //  
+  // }
 
   /**
    * Write Some Testing here
