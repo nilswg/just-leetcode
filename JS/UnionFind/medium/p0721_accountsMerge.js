@@ -35,13 +35,15 @@ import { isArrayEqual } from '../../BackTracking/backTracking.js';
 //
 
 // 解題重點
-// 1. 瞭解 Graph 實作相鄰表(Adjacency List)，再使用 DFS 走訪
-// 2. 瞭解並查集(Disjoint Set Union)概念，並實作相鄰節點表
+// 1. 瞭解 Graph 實作 email間的相鄰關係表(Adjacency List) 後，再使用 DFS 走訪
+// 2. 瞭解並查集(Disjoint Set Union)概念，須熟悉並實作 findParent 與 union 兩方法，使email間形成關聯。
 
 // 解題思路
 // 1. 使用者名稱是可以重覆的，使用者一定僅有一名稱；email 則一定唯一，且必屬於唯一使用者。
+//    不同使用者其名稱都可以是'John'，但所使用的email群集，一定皆只對應到同一個 'John'。      
 // 2. 單純以Graph + DFS解題，在實作相鄰表(Adjacency List)需要多一點巧思。
 // 3. 透過並查集(Disjoint Set Union)概念實作。
+// 4. 將emails根據不同使用者分群後，使用者不用按序，但是 emails 則需要排序，使時間複雜至少為O(NlogN)
 
 /**
  * Solution : 純粹使用Graph (建立adjlist 還是有用到並查集的概念)
