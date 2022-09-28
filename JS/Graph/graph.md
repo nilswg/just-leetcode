@@ -201,14 +201,13 @@ dijkstra(edges, 5, 1);
 
 Bellman-Ford 則是對於圖形中含有負權重路徑的問題，能夠進行處理
 原理上，是運用動態規劃(Dynamic programming)，能夠整合計算出現過的路徑組合，
-根據下圖，便是使用 Bellman-Ford 演算法，找出以起點k, 到達其他節點的最短路徑表(distances)。
+根據下圖，便是使用 Bellman-Ford 演算法，找出以起點 k, 到達其他節點的最短路徑表(distances)。
 
 其結果而言，
 若含有(1)，但不含有(2)的圖形，Bellman-Ford 能夠找出到達其他節點的最短路徑表(distances)。
 至於含有(2)的圖形，Bellman-Ford 必能發現，其中含有負權迴路(Negative Cycles)。
 
 ```js
-
 /**
  *   1----[2]---->2
  *   | ↖          ↑
@@ -251,4 +250,113 @@ const bellman = (graph, n, k) => {
 };
 
 bellman(edges, 5, 1);
+```
+
+### degree
+
+```js
+var edges = [
+  [1, 2],
+  [2, 1],
+  [1, 4],
+  [2, 4],
+  [3, 4],
+  [2, 3],
+  [3, 3],
+];
+
+/**
+ * e.g: edges: [[1,2],[2,1],[1,4],[2,4],[3,4],[2,3],[3,3]]
+ *
+ *   1-----4
+ *  /|   ∕ |
+ *  \| ∕   |
+ *   2-----3↩
+ *
+ * degree(v1) = 3
+ * degree(v2) = 4
+ * degree(v3) = 3
+ * degree(v4) = 3
+ *
+ *
+ *
+ * 限制:
+ *
+ * 建立adjList時，使用 Set 去除不需要理會的 edge
+ * 1) 如 [1,2] 與 [2,1] 已經發生重複。
+ * 2) 如 [3,3] 沒有意義。
+ * 假設 maxNum 為節點所能出現的最大數值。即 0 <= edges[i][0], edges[i][1] <= maxNum
+ *
+ */
+var maxNum = 4;
+var degree = new Array(maxNum + 1).fill(0);
+var adj = degree.map(() => new Set()); // 如 1)
+for (const [a, b] of edges) {
+  if (a === b) continue; // 如 2)
+  degree[a] += 1;
+  degree[b] += 1;
+  adj[a].add(b);
+  adj[b].add(a);
+}
+/***
+ * 產生結果
+ * degree : Array(5) [ 0, 3, 4, 2, 3 ]
+ * adj: Array(5) [ [], [ 2, 4 ], [ 1, 4, 3 ], [ 4, 2 ], [ 1, 2, 3 ] ]
+ */
+```
+
+### indegree vs out outdegree
+
+- indegree : the number of edges going to it，射入該點的邊數量
+- outdegree: the number of edges going from it，從該點離開的邊數量
+
+```js
+const edges = [
+  [1, 4],
+  [2, 1],
+  [2, 4],
+  [2, 3],
+  [4, 3],
+  [4, 1],
+];
+/**
+ *
+ * (1)=<=>=(4)
+ *  |     ↗ |
+ *  ↑   ↗   ↓
+ *  | ↗     |
+ * (2)--→--(3)
+ *
+ * indegree(1) = 2
+ * indegree(2) = 0
+ * indegree(3) = 2
+ * indegree(4) = 2
+ *
+ * outdegree(1) = 1
+ * outdegree(2) = 3
+ * outdegree(3) = 0
+ * outdegree(4) = 2
+ *
+ *
+ * 限制:
+ *
+ * 建立adjList時，本次使用 Array 即可，不需要考慮重複的問題。
+ * 假設 maxNum 為節點所能出現的最大數值。即 0 <= edges[i][0], edges[i][1] <= maxNum
+ *
+ */
+var maxNum = 4;
+var indegree = new Array(maxNum + 1).fill(0);
+var outdegree = new Array(maxNum + 1).fill(0);
+var adj = indegree.map(() => []);
+for (const [a, b] of edges) {
+  indegree[b] += 1;
+  outdegree[a] += 1;
+  adj[a].push(b);
+}
+/***
+ * 產生結果 
+ * indegree : Array(5) [ 0, 2, 0, 2, 2 ]
+ * outdegree : Array(5) [ 0, 1, 3, 0, 2 ]
+ * adj: Array(5) [ [], [ 4 ], [ 1, 4, 3 ], [], [3, 1] ]
+ */
 ```
