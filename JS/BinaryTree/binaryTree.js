@@ -23,7 +23,6 @@ export function buildTreeNodes(values = []) {
    * 透過第一個值，創建根節點。
    */
   const root = new TreeNode(values[0]);
-
   /**
    * 生成Tree所需的 queue
    */
@@ -35,8 +34,10 @@ export function buildTreeNodes(values = []) {
   while (queue.length > 0) {
     let curr = queue.shift();
     for (let side of ['left', 'right']) {
+      // 如果當前節點為空，則檢查values[i] 後放入
       if (!curr[side]) {
-        if (values[i] !== null) {
+        // values 必須為有效值，不為 null 或 undefined
+        if (i < n && values[i] != null) {
           curr[side] = new TreeNode(values[i]);
         }
         i += 1;
