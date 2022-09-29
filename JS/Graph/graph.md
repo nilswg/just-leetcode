@@ -1,5 +1,7 @@
 # Graph
 
+### 說明
+
 圖(graph)類似鏈結串列(LinkedList)、樹(tree)等結構，其為多個節點(node)的集合。
 差別於，圖的構成更加多元，可能無頭尾之分，亦無特定走訪順序,這些特性還包括:
 
@@ -13,7 +15,6 @@
 ## 以 133. Clone Graph 為例
 
 在問題 133 中，它要求將給定的 graph 進行深拷貝，這意味著我們必須思考如何走訪整的圖。
-作法上可以使用 BFS 與 DFS 來實現
 
 ## 範例 :
 
@@ -25,76 +26,155 @@
       2 - 8
 ```
 
-## BFS
+### Adjacency List
+
+對於圖中各點與邊的相鄰(adjacent)關係，可以表示為 Adjacency List 的形式，來方便我們進行走訪。
+
+- adjacent(相鄰): 用一條直線連接 u 與 v 兩點，該直線稱其為邊(edge)，而 u,v 兩點間的關係，則稱 u 相鄰於 v。(u and v are adjacent)
+
+作法上，將圖轉換成 Adjacency List 後，便可使用 BFS 與 DFS 來實現走訪。
 
 ```js
-const adjacencyList = [
-  [1, 3],
-  [0],
-  [3, 8],
-  [0, 2, 4, 5],
-  [3, 6],
-  [3],
-  [4, 7],
-  [6],
-  [2],
+/**
+ *(0) ― (1)
+ *  \
+ *  (3) ― (2) ― (8)
+ *   | \
+ *  (4) (5)
+ *   |
+ *  (6) ― (7)
+ */
+
+var numOfVertices = 9; // 節點數量
+
+var edges = [
+  [0, 1],
+  [0, 3],
+  [3, 2],
+  [2, 8],
+  [3, 4],
+  [3, 5],
+  [4, 6],
+  [6, 7],
 ];
 
-const bfs = function (graph) {
+var adjacencyList = new Array(numOfVertices).fill(0).map(() => []);
+for (const [a, b] of edges) {
+  adjacencyList[a].push(b);
+  adjacencyList[b].push(a);
+}
+/**
+ * adjacencyList = [
+ *  0: [ 1, 3 ]
+ *  1: [ 0 ]
+ *  2: [ 3, 8 ]
+ *  3: [ 0, 2, 4, 5 ]
+ *  4: [ 3, 6 ]
+ *  5: [ 3 ]
+ *  6: [ 4, 7 ]
+ *  7: [ 6 ]
+ *  8: [ 2 ] ]
+ */
+```
+
+## 使用 BFS 與 DFS 走訪 Adjacency List
+
+### BFS (immutable)
+
+```js
+var bfs = function (adj, st) {
   const seen = {};
-  const queue = [0];
-  const values = [];
+  const queue = [st];
+  const res = [];
 
-  while (queue.length) {
-    const vertex = queue.shift();
+  while (queue.length > 0) {
+    const cur = queue.shift();
+    res.push(cur);
+    seen[cur] = true;
 
-    values.push(vertex);
-    seen[vertex] = true;
-
-    const connections = graph[vertex];
-    for (const connection of connections) {
-      if (!seen[connection]) {
-        queue.push(connection);
+    const neighbors = adj[cur];
+    for (const nb of neighbors) {
+      if (!seen[nb]) {
+        queue.push(nb);
       }
     }
   }
-
-  return values;
+  return res;
 };
 
-console.log(bfs(adjacencyList));
+console.log(
+  bfs([[1, 3], [0], [3, 8], [0, 2, 4, 5], [3, 6], [3], [4, 7], [6], [2]], 0)
+);
+// 正確答案: [ 0, 1, 3, 2, 4, 5, 8, 6, 7 ]
 ```
 
-## DFS
+### BFS (mutable)
 
 ```js
-const adjacencyList = [
-  [1, 3],
-  [0],
-  [3, 8],
-  [0, 2, 4, 5],
-  [3, 6],
-  [3],
-  [4, 7],
-  [6],
-  [2],
-];
+var bfs = function (adj, st) {
+  const queue = [st]; // 固定以 0 作為起點
+  const res = [];
 
-const dfs = function (graph, vertex = 0, values = [], seen = {}) {
-  values.push(vertex);
-  seen[vertex] = true;
+  while (queue.length > 0) {
+    const cur = queue.shift();
+    res.push(cur);
+    const neighbors = adj[cur];
+    adj[cur] = []; // delete visited vertex
+    for (const nb of neighbors) {
+      if (!adj[nb].length) continue;
+      queue.push(nb);
+    }
+  }
+  return res;
+};
 
-  const connections = graph[vertex];
-  for (const connection of connections) {
-    if (!seen[connection]) {
-      dfs(graph, connection, values, seen);
+console.log(
+  bfs([[1, 3], [0], [3, 8], [0, 2, 4, 5], [3, 6], [3], [4, 7], [6], [2]], 0)
+);
+// 正確答案: [ 0, 1, 3, 2, 4, 5, 8, 6, 7 ]
+```
+
+### DFS (immutable)
+
+```js
+var dfs = function (adj, cur = 0, res = [], seen = {}) {
+  res.push(cur);
+  seen[cur] = true;
+
+  const neighbors = adj[cur];
+  for (const nb of neighbors) {
+    if (!seen[nb]) {
+      dfs(adj, nb, res, seen);
     }
   }
 
-  return values;
+  return res;
 };
 
-console.log(dfs(adjacencyList));
+console.log(
+  dfs([[1, 3], [0], [3, 8], [0, 2, 4, 5], [3, 6], [3], [4, 7], [6], [2]])
+);
+// 正確答案: [ 0, 1, 3, 2, 8, 4, 6, 7, 5 ]
+```
+
+### DFS (mutable)
+
+```js
+var dfs = function (adj, cur = 0, res = []) {
+  if (!adj[cur].length) return;
+  res.push(cur);
+  const neighbors = adj[cur];
+  adj[cur] = []; // delete visited vertex
+  for (const nb of neighbors) {
+    dfs(adj, nb, res);
+  }
+  return res;
+};
+
+console.log(
+  dfs([[1, 3], [0], [3, 8], [0, 2, 4, 5], [3, 6], [3], [4, 7], [6], [2]])
+);
+// 正確答案: [ 0, 1, 3, 2, 8, 4, 6, 7, 5 ]
 ```
 
 ## Dijkstra Algorithm
@@ -254,6 +334,11 @@ bellman(edges, 5, 1);
 
 ### degree
 
+The degree of a vertex u is the number of edges incident(作用) on u.
+對於 u 而言，其有多少作用於 u，或說存在多少邊與 u 相連，此數量稱為 degree
+
+- incident(作用): 當對於 u,v 而言，存在"作用"關係，若 (u→v) 即 u 作用於 v ；或是 (u⇆v) 稱同時"作用"於 u 與 v 。
+
 ```js
 var edges = [
   [1, 2],
@@ -307,8 +392,15 @@ for (const [a, b] of edges) {
 
 ### indegree vs out outdegree
 
+除此之外，degree 根據進入(to)與離開(from)又可分為 indegree 與 outdegree 兩種。
+
 - indegree : the number of edges going to it，射入該點的邊數量
 - outdegree: the number of edges going from it，從該點離開的邊數量
+
+對於單一點而言，其 degree 數量應相等於其 indegree 加上 outdegree，即
+=> degree[i] = indegree[i] + outdegree[i];
+
+若以圖上所有節點來看，所有點的 degree 數量加總應等同於 edge 的總數量。
 
 ```js
 const edges = [
@@ -354,7 +446,7 @@ for (const [a, b] of edges) {
   adj[a].push(b);
 }
 /***
- * 產生結果 
+ * 產生結果
  * indegree : Array(5) [ 0, 2, 0, 2, 2 ]
  * outdegree : Array(5) [ 0, 1, 3, 0, 2 ]
  * adj: Array(5) [ [], [ 4 ], [ 1, 4, 3 ], [], [3, 1] ]
