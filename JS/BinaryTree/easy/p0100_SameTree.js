@@ -1,5 +1,5 @@
 // @ts-check
-import { TreeNode } from '../binaryTree.js';
+import { buildTreeNodes, TreeNode } from '../binaryTree.js';
 
 // 題目鏈結
 // https://leetcode.com/problems/same-tree/
@@ -81,7 +81,7 @@ var isSameTreeBFS = function (p, q) {
  * @param {TreeNode} q
  * @return {boolean}
  */
-var isSameTree = function (p, q) {
+var isSameTreeDFS = function (p, q) {
   const helper = (p, q) => {
     // 空點，表示走到底，返回true。
     if (!p && !q) return true;
@@ -98,33 +98,27 @@ var isSameTree = function (p, q) {
 (function () {
   console.log('Testing [isSameTreeBFS]...');
 
-  console.log(
-    isSameTreeBFS(
-      new TreeNode(1, new TreeNode(2), new TreeNode(3)),
-      new TreeNode(1, new TreeNode(2), new TreeNode(3))
-    ) === true
-  );
-  console.log(
-    isSameTreeBFS(
-      new TreeNode(1, new TreeNode(2), null),
-      new TreeNode(1, null, new TreeNode(2))
-    ) === false
-  );
-
-  console.log('Testing [isSameTreeDFS]...');
-
-  console.log(
-    isSameTree(
-      new TreeNode(1, new TreeNode(2), new TreeNode(3)),
-      new TreeNode(1, new TreeNode(2), new TreeNode(3))
-    ) === true
-  );
-  console.log(
-    isSameTree(
-      new TreeNode(1, new TreeNode(2), null),
-      new TreeNode(1, null, new TreeNode(2))
-    ) === false
-  );
-
+  const testingWith = (cb) => {
+    console.log(`Testing ${cb.name}`);
+    console.log(
+      cb(
+        buildTreeNodes([1, 2, 3]),
+        buildTreeNodes([1, 2, 3])
+        // new TreeNode(1, new TreeNode(2), new TreeNode(3)),
+        // new TreeNode(1, new TreeNode(2), new TreeNode(3))
+      ) === true
+    );
+    console.log(
+      cb(
+        buildTreeNodes([1, 2]),
+        buildTreeNodes([1, null, 2])
+        // new TreeNode(1, new TreeNode(2), null),
+        // new TreeNode(1, null, new TreeNode(2))
+      ) === false
+    );
+  };
+  testingWith(isSameTreeBFS);
+  testingWith(isSameTreeDFS);
+  
   console.log('All Testing Passed ✅');
 })();

@@ -63,7 +63,10 @@ import { Node } from "../graph.js";
 /**
  * Solution : BFS
  *
- * e.g:  node: [[2,4],[1,3],[2,4],[1,3]]
+ * e.g:  node: [[2,4],
+ *              [1,3],
+ *              [2,4],
+ *              [1,3]]  // 已經是一個 adjList 不用轉換；只是起始值為 1
  *
  *           1 - 2
  *   node =  |   |
@@ -107,7 +110,7 @@ var cloneGraphBFS = function (node) {
   mp.set(node, new Node(node.val, []));
 
   while (queue.length > qi) {
-    const curr = queue[qi];
+    const curr = queue[qi]; //queue
     const clone = mp.get(curr); //透過 map 取出相應的拷貝節點
     qi += 1;
 

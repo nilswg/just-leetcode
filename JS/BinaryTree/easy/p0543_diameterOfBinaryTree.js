@@ -28,36 +28,50 @@ import { TreeNode, buildTreeNodes } from '../binaryTree.js';
 //
 
 // 解題重點
-// 1.
+// 1. 左右兩子樹個別的最大深度的總和(leftMaxHight + rightMaxHeight)，才有可能找出最長的路徑。
 // 2.
 
 // 解題思路
-// 1.
+// 1. 使用 DFS 走訪各點，根據各點左右子樹的最大深度，計算出最長路徑。
 // 2.
 
-// Solution :
-//
-// 複雜度
-// Time Complexity : O(N)
-// Space Complexity: O(logN)
-/**
+/** Solution : 使用 DFS
+ *
+ * 空間複雜度分析
+ * O(logN) ； 連 null 都要考慮。
+ * 
+ * e.g [1, null, 2, null, 3, null, 4]
+ *
+ *         1
+ *        / \
+ *       2  null
+ *      / \
+ *     3  null
+ *    / \
+ *   4  null
+ *
+ *
+ * 複雜度
+ * Time Complexity : O(N)
+ * Space Complexity: O(logN)
+ *
  * @param {TreeNode} root
  * @return {number}
  */
 var diameterOfBinaryTree = function (root) {
-  let res = 0;
+  let longestPath = 0; // longest path
 
   let getHeight = (node) => {
     if (!node) return 0;
-    let lt = getHeight(node.left);
-    let rt = getHeight(node.right);
-    res = Math.max(res, lt + rt);
-    return Math.max(lt, rt) + 1;
+    let leftMaxHeight = getHeight(node.left);
+    let rightMaxHeight = getHeight(node.right);
+    longestPath = Math.max(longestPath, leftMaxHeight + rightMaxHeight);
+    return Math.max(leftMaxHeight, rightMaxHeight) + 1;
   };
 
   getHeight(root);
 
-  return res;
+  return longestPath;
 };
 
 // 測試

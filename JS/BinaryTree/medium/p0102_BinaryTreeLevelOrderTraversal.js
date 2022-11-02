@@ -16,7 +16,7 @@ import { buildTreeNodes, isArrayEqual, TreeNode } from '../binaryTree.js';
 
 // 解題思路
 
-// 使用 DFS 複雜度 (錯誤的範例!)
+// 使用 DFS 複雜度
 // Time Complexity : O(N)
 // Space Complexity: O(logN) (即樹高，不含儲存結果res的大小)
 
@@ -66,20 +66,29 @@ var levelOrderDFS = function (root) {
  */
 var levelOrder = function (root) {
   if (!root) return [];
+
+  const queue = [root];
   let res = [];
-  let queue = [root];
-  let qi = 0; // 改良，避免使用 shift或是 slice的方式去清空queue。
-  while (queue.length > qi) {
-    let level = [];
-    for (let i = qi, n = queue.length; i < n; i++) {
-      const node = queue[i];
-      level.push(node.val);
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
-      qi += 1;
+  let level = -1;
+
+  while (queue.length > 0) {
+    level += 1;
+
+    for (let qi = 0, qlen = queue.length; qi < qlen; qi++) {
+      const curNode = queue.shift();
+      const curVal = curNode.val;
+
+      if (!res[level]) {
+        res[level] = [];
+      }
+
+      res[level].push(curVal);
+
+      if (curNode.left) queue.push(curNode.left);
+      if (curNode.right) queue.push(curNode.right);
     }
-    res.push(level);
   }
+
   return res;
 };
 

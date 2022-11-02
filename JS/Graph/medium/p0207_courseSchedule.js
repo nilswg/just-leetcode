@@ -4,10 +4,10 @@
 // https://leetcode.com/problems/course-schedule
 
 // 題目說明
-// There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
+// There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. 
+// You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
 // For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
 // Return true if you can finish all courses. Otherwise, return false.
-//
 
 // Example 1:
 // Input: numCourses = 2, prerequisites = [[1,0]]
@@ -154,7 +154,7 @@ var canFinishBFS = function (numCourses, prerequisites) {
 };
 
 /**
- * Solution : 使用 Typological Sort
+ * Solution : 使用 Typological(拓樸) Sort
  * 
  * 使用額外的 indegree 表，並以數量為0作為起始點放入queue中，
  * 在以BFS的方式，同時不斷更新 indegree，直到indegree所有數量為0表示無環圈，
