@@ -316,11 +316,12 @@ const bellman = (graph, n, k) => {
   // 固定執行 n-1 次，每次又有 E 個路徑要檢查，時間複雜度:O(NxE)
   for (let i = 0; i < n - 1; i++) {
     let isUpdate = false;
-    for (const [source, target, weight] of graph[i]) {
-      const newDistance = distances[source] + weight;
-      if (newDistance < distances[target]) {
-        distances[target] = newDistance;
+    for (const [source, target, weight] of graph) {
+      const newDistance = distances[source-1] + weight;
+      if (newDistance < distances[target-1]) {
+        distances[target-1] = newDistance;
         isUpdate = true;
+        // console.log(`Update distances[${target - 1}] from ${distances[target - 1]} to ${newDistance}`, distances);
       }
     }
     if (isUpdate === false) break;
@@ -329,7 +330,7 @@ const bellman = (graph, n, k) => {
   return distances;
 };
 
-bellman(edges, 5, 1);
+bellman(edges, 4, 1); // n=4 為節點的總數；k=1 表示起始的節點
 ```
 
 ### degree
